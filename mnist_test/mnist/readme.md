@@ -1,0 +1,2 @@
+my_regression是numpy和LR回归实现的线性模型
+其它文件是按照教程用tensorflow写的
