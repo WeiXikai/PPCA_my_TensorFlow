@@ -46,6 +46,7 @@ class Node(object):
 
     __repr__ = __str__
 
+
 def Variable(name):
     """User defined variables in an expression.  
         e.g. x = Variable(name = "x")
@@ -223,7 +224,7 @@ class PlaceholderOp(Op):
 
     def gradient(self, node, output_grad):
         """No gradient function since node has no inputs."""
-        return None
+        assert False, "Placeholder values provided by feed_dict"
 
 class ZerosLikeOp(Op):
     """Op that represents a constant np.zeros_like."""
@@ -329,9 +330,12 @@ def gradients(output_node, node_list):
     for node in reverse_topo_order:
         grad = sum_node_list(node_to_output_grads_list[node])
         node_to_output_grad[node] = grad
+        if isinstance(node.op, PlaceholderOp):
+            continue
+        op_grad = node.op.gradient(node, grad)
         for i in range(len(node.inputs)):
             tmp_former_list = node_to_output_grads_list.get(node.inputs[i], [])
-            tmp_former_list.append(node.op.gradient(node, grad)[i])
+            tmp_former_list.append(op_grad[i])
             node_to_output_grads_list[node.inputs[i]] = tmp_former_list
     # Collect results for gradients requested.
     grad_node_list = [node_to_output_grad[node] for node in node_list]

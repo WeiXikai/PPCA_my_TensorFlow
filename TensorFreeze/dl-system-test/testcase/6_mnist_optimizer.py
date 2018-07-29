@@ -9,6 +9,7 @@ b = tf.Variable(tf.zeros([10]))
 y = tf.nn.softmax(tf.matmul(x, W) + b)
 
 # define loss and optimizer
+
 y_ = tf.placeholder(tf.float32, [None, 10])
 
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices=[1]))
