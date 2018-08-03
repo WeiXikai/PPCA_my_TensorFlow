@@ -18,6 +18,8 @@ tests = [
 
 def main(model_name):
     for i, item in enumerate(tests):
+        if i == 8:
+            exit(0)
         test_name = item[0]
         file_name = item[1]
 

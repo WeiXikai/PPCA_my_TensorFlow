@@ -1,6 +1,6 @@
+from assistance import *
 import numpy as np
-
-
+import TensorFreeze as tf
 # This file is for the Node and Operation
 
 
@@ -27,49 +27,50 @@ class Node(object):
         self.const_value = None
         self.name = None
 
+    def eval(self, feed_dict):
+        return tf.default_session.run(self, feed_dict)
+
     def __add__(self, other):
         """Add two node will return a new node"""
         if isinstance(other, Node):
             # other is a Node
-            new_node = add_op(self, other)
+            new_node = add(self, other)
         else:
             # other is a constant
-            new_node = add_op_const(self, other)
+            new_node = add(self, constant(other))
         return new_node
 
     def __sub__(self, other):
         if isinstance(other, Node):
-            new_node = sub_op(self, other)
+            new_node = sub(self, other)
         else:
-            new_node = sub_op_const(self, other)
+            new_node = sub(self, constant(other))
         return new_node
 
     def __rsub__(self, other):
-        if isinstance(other, Node):
-            assert False, "\033[1;31mTwo nodes don't need __rsub__ :(\033[0m"
-        else:
-            new_node = rsub_op_const(self, other)
+        new_node = sub(constant(other), self)
+        return new_node
+
+    def __neg__(self):
+        new_node = sub(constant(0), self)
         return new_node
 
     def __mul__(self, other):
         if isinstance(other, Node):
-            new_node = mul_op(self, other)
+            new_node = mul(self, other)
         else:
-            new_node = mul_op_const(self, other)
+            new_node = mul(self, constant(other))
         return new_node
 
     def __truediv__(self, other):
         if isinstance(other, Node):
-            new_node = div_op(self, other)
+            new_node = div(self, other)
         else:
-            new_node = div_op_const(self, other)
+            new_node = div(self, constant(other))
         return new_node
 
     def __rtruediv__(self, other):
-        if isinstance(other, Node):
-            assert False, "\033[1;31mTwo nodes don't need __rdiv__ :(\033[0m"
-        else:
-            new_node = rdiv_op_const(self, other)
+        new_node = div(constant(other), self)
         return new_node
 
     # Allow the left-hand-side operation
@@ -93,10 +94,9 @@ class Operator(object):
 
     # Given the value of the input nodes, compute can give the value of the result
     # virtual function
-    def compute(self, node, input_nodes):
+    def compute(self, node):
         """
         :param node: node that is going to be computed
-        :param input_nodes: nodes of input
         :return: the value of the node
         """
         raise NotImplementedError
@@ -114,6 +114,23 @@ class Operator(object):
         raise NotImplementedError
 
 
+class ConstantOp(Operator):
+    # Node for the constant value
+    def __call__(self, const_value):
+        new_node = Operator.__call__(self)
+        new_node.inputs = []
+        new_node.const_value = const_value
+        new_node.name = "%s" % str(const_value)
+        return new_node
+
+    def compute(self, node):
+        assert len(node.inputs) == 0, "\033[1;31mConstantOp compute args_num is not 0\033[0m"
+        node.value = node.const_value
+
+    def gradient(self, node, this_grad):
+        return constant(0) * this_grad
+
+
 class AddOp(Operator):
     # Operation that add two node into a new node
     def __call__(self, node_left, node_right):
@@ -128,34 +145,12 @@ class AddOp(Operator):
         return new_node
 
     # the implement of the virtual function in the class Operator
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 2, "\033[1;31mAddOp compute args_num is not 2\033[0m"
-        node.value = input_nodes[0].value + input_nodes[1].value
+    def compute(self, node):
+        assert len(node.inputs) == 2, "\033[1;31mAddOp compute args_num is not 2\033[0m"
+        node.value = node.inputs[0].value + node.inputs[1].value
 
     def gradient(self, node, this_grad):
-        return [reducereshapesum_op(this_grad, node.inputs[0]), reducereshapesum_op(this_grad, node.inputs[1])]
-
-
-class AddByConstOp(Operator):
-    # Operation that add a node with a constant
-    def __call__(self, node_left, const_value):
-        """
-        :param node_left: the left node of the add operation
-        :param const_value: the right const number of the add operation
-        :return: a new node represent node_left + const_value
-        """
-        new_node = Operator.__call__(self)
-        new_node.inputs = [node_left]
-        new_node.name = "(%s + %s)" % (node_left.name, str(const_value))
-        return new_node
-
-    # the implement of the virtual function in the class operator
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mAddByConstOp compute args_num is not 1\033[0m"
-        node.value = input_nodes[0].value + node.const_value
-
-    def gradient(self, node, this_grad):
-        return [reducereshapesum_op(this_grad, node.inputs[0])]
+        return [reduce_reshape(this_grad, node.inputs[0]), reduce_reshape(this_grad, node.inputs[1])]
 
 
 class SubOp(Operator):
@@ -166,44 +161,12 @@ class SubOp(Operator):
         new_node.name = "(%s - %s)" % (node_left.name, node_right.name)
         return new_node
 
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 2, "\033[1;31mSubOp compute args_num is not 2\033[0m"
-        node.value = input_nodes[0].value - input_nodes[1].value
+    def compute(self, node):
+        assert len(node.inputs) == 2, "\033[1;31mSubOp compute args_num is not 2\033[0m"
+        node.value = node.inputs[0].value - node.inputs[1].value
 
     def gradient(self, node, this_grad):
-        return [reducereshapesum_op(this_grad, node.inputs[0]), reducereshapesum_op(-this_grad, node.inputs[1])]
-
-
-class SubByConstOp(Operator):
-    # Op to sub a node with a constant
-    def __call__(self, node_left, const_value):
-        new_node = Operator.__call__(self)
-        new_node.inputs = [node_left]
-        new_node.name = "(%s - %s)" % (node_left.name, str(const_value))
-        return new_node
-
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mSubByConstOp compute args_num is not 2\033[0m"
-        node.value = input_nodes[0].value - node.const_value
-
-    def gradient(self, node, this_grad):
-        return [reducereshapesum_op(this_grad, node.inputs[0])]
-
-
-class RSubByConstOp(Operator):
-    # Op to sub a constant with a node
-    def __call__(self, node_right, const_value):
-        new_node = Operator.__call__(self)
-        new_node.inputs = [node_right]
-        new_node.name = "(%s - %s)" % (str(const_value), node_right.name)
-        return new_node
-
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mRSubByConstOp compute args_num is not 1\033[0m"
-        node.value = node.const_value - input_nodes[0].value
-
-    def gradient(self, node, this_grad):
-        return [reducereshapesum_op(-this_grad, node.inputs[0])]
+        return [reduce_reshape(this_grad, node.inputs[0]), reduce_reshape(-this_grad, node.inputs[1])]
 
 
 class MulOp(Operator):
@@ -214,29 +177,12 @@ class MulOp(Operator):
         new_node.name = "(%s * %s)" % (node_left.name, node_right.name)
         return new_node
 
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 2, "\033[1;31mMulOp compute args_num is not 2\033[0m"
-        node.value = input_nodes[0].value * input_nodes[1].value
+    def compute(self, node):
+        assert len(node.inputs) == 2, "\033[1;31mMulOp compute args_num is not 2\033[0m"
+        node.value = node.inputs[0].value * node.inputs[1].value
 
     def gradient(self, node, this_grad):
-        return [reducereshapesum_op(node.inputs[1] * this_grad, node.inputs[0]), node.inputs[0] * this_grad]
-
-
-class MulByConstOp(Operator):
-    # Op to multiply a node with a constant
-    def __call__(self, node_left, const_value):
-        new_node = Operator.__call__(self)
-        new_node.const_value = const_value
-        new_node.inputs = [node_left]
-        new_node.name = "(%s * %s)" % (node_left.name, str(const_value))
-        return new_node
-
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mMulByConstOp compute args_num is not 1\033[0m"
-        node.value = input_nodes[0].value * node.const_value
-
-    def gradient(self, node, this_grad):
-        return [reducereshapesum_op(node.const_value * this_grad, node.inputs[0])]
+        return [reduce_reshape(node.inputs[1] * this_grad, node.inputs[0]), reduce_reshape(node.inputs[0] * this_grad, node.inputs[1])]
 
 
 class DivOp(Operator):
@@ -247,44 +193,12 @@ class DivOp(Operator):
         new_node.name = "(%s / %s)" % (node_left.name, node_right.name)
         return new_node
 
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 2, "\033[1;31mDivOp compute args_num is not 2\033[0m"
-        node.value = input_nodes[0].value / input_nodes[1].value
+    def compute(self, node):
+        assert len(node.inputs) == 2, "\033[1;31mDivOp compute args_num is not 2\033[0m"
+        node.value = node.inputs[0].value / node.inputs[1].value
 
     def gradient(self, node, this_grad):
-        return [reducereshapesum_op(1 / node.inputs[1] * this_grad, node.inputs[0]), reducereshapesum_op(-node.inputs[0] / (node.inputs[1] * node.inputs[1]) * this_grad, node.inputs[1])]
-
-
-class DivByConstOp(Operator):
-    # Op to div a node with a const
-    def __call__(self, node_left, const_value):
-        new_node = Operator.__call__(self)
-        new_node.inputs = [node_left]
-        new_node.name = "(%s / %s)" % (node_left.name, str(const_value))
-        return new_node
-
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mDivByConstOp compute args_num is not 1\033[0m"
-        node.value = input_nodes[0].value / node.const_value
-
-    def gradient(self, node, this_grad):
-        return [reducereshapesum_op(this_grad / node.const_value, node.inputs[0])]
-
-
-class RDivByConstOp(Operator):
-    # Op to div a constant with a node
-    def __call__(self, node_right, const_value):
-        new_node = Operator.__call__(self)
-        new_node.inputs = [node_right]
-        new_node.name = "(%s / %s)" % (node_right.name, str(const_value))
-        return new_node
-
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mRDivByConstOp compute args_num is not 1\033[0m"
-        node.value = node.const_value / input_nodes[0].value
-
-    def gradient(self, node, this_grad):
-        return [reducereshapesum_op(-node.const_value / (node.inputs[0] * node.inputs[0]) * this_grad, node.inputs[0])]
+        return [reduce_reshape(1 / node.inputs[1] * this_grad, node.inputs[0]), reduce_reshape(-node.inputs[0] / (node.inputs[1] * node.inputs[1]) * this_grad, node.inputs[1])]
 
 
 class MatMulOp(Operator):
@@ -304,40 +218,40 @@ class MatMulOp(Operator):
         new_node.name = "MatMul(%s,%s,%s,%s)" % (node_left.name, node_right.name, str(trans_left), str(trans_right))
         return new_node
 
-    def compute(self, node, input_nodes):
+    def compute(self, node):
         if node.left_mat_trans:
-            tmp_left_mat = input_nodes[0].value.T
+            tmp_left_mat = node.inputs[0].value.T
         else:
-            tmp_left_mat = input_nodes[0].value
+            tmp_left_mat = node.inputs[0].value
         if node.right_mat_trans:
-            tmp_right_mat = input_nodes[1].value.T
+            tmp_right_mat = node.inputs[1].value.T
         else:
-            tmp_right_mat = input_nodes[1].value
+            tmp_right_mat = node.inputs[1].value
         node.value = np.dot(tmp_left_mat, tmp_right_mat)
 
     def gradient(self, node, this_grad):
-        """Useful formula: if Y=AB, then dA=dY B^T, dB=A^T dY"""
-        return [matmul_op(this_grad, node.inputs[1], False, True), matmul_op(node.inputs[0], this_grad, True, False)]
+        """Useful formula: if Y=AB, then dA=dY B^T, dB=A^T dY
+                           if Y=A^T B, then dA=(dY B^T)^T=B dY^T, dB=A^T dY
+                           if Y=A B^T, then dA=dY B, dB=dY^T dA
+                           if Y=A^T B^T, then dA=B dY^T, dB=dY^T A
+        """
+        return [matmul(this_grad, node.inputs[1], False, True ^ node.right_mat_trans), matmul(node.inputs[0], this_grad, True ^ node.left_mat_trans, False)]
 
 
 class ExpOp(Operator):
     """ExpOp is the operator to calculate the exp function"""
     def __call__(self, node_input):
         new_node = Operator.__call__(self)
-        # if isinstance(input, Node):
         new_node.inputs = [node_input]
         new_node.name = "exp(%s)" % node_input.name
-        # else:
-        #     new_node.value = np.exp(input)
-        #     new_node.name = "exp(%s)" % (str(input))
         return new_node
 
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mExpOp compute args_num is not 1\033[0m"
-        node.value = np.exp(input_nodes[0].value)
+    def compute(self, node):
+        assert len(node.inputs) == 1, "\033[1;31mExpOp compute args_num is not 1\033[0m"
+        node.value = np.exp(node.inputs[0].value)
 
     def gradient(self, node, this_grad):
-        return [this_grad * np.exp(node.inputs[0])]
+        return [this_grad * exp(node.inputs[0])]
 
 
 class LogOp(Operator):
@@ -348,100 +262,315 @@ class LogOp(Operator):
         new_node.name = "log(%s)" % node_input.name
         return new_node
 
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mLogOp compute args_num is not 1\033[0m"
-        node.value = np.log(input_nodes[0].value)
+    def compute(self, node):
+        assert len(node.inputs) == 1, "\033[1;31mLogOp compute args_num is not 1\033[0m"
+        node.value = np.log(node.inputs[0].value)
 
     def gradient(self, node, this_grad):
         return [1 / node.inputs[0] * this_grad]
 
 
-class BroadCastOP(Operator):
-    """BroadCastOp is a node represent the np.broadcast_to"""
-    def __call__(self, node_A, node_B):
+class SqrtOp(Operator):
+    """SqrtOp is the operator to calculate the sqrt function"""
+    def __call__(self, node_input):
         new_node = Operator.__call__(self)
-        new_node.inputs = [node_A, node_B]
-        new_node.name = "broadcast %s to the shape of %s" % (node_A, node_B)
+        new_node.inputs = [node_input]
+        new_node.name = "sqrt(%s)" % node_input.name
         return new_node
 
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 2, "\033[1;31mBroadCastOp compute args_num is not 2\033[0m"
-        node.value = np.broadcast_to(node.value, input_nodes[1].shape)
+    def compute(self, node):
+        assert len(node.inputs) == 1, "\033[1;31mSqrtOp compute args_num is not 1\033[0m"
+        node.value = np.sqrt(node.inputs[0].value)
 
     def gradient(self, node, this_grad):
-        return [reducereshapesum_op(this_grad, node.inputs[0]), zeroslike_op(node.inputs[1])]
+        return [1 / (2 * sqrt(node.inputs[0])) * this_grad]
+
+
+class PowerOp(Operator):
+    """PowerOp is for the pow function"""
+    def __call__(self, node_base, node_pow):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node_base, node_pow]
+        new_node.name = "pow(%s, %s)" % (node_base.name, node_pow.name)
+        return new_node
+
+    def compute(self, node):
+        assert len(node.inputs) == 2, "\033[1;31mPowOp compute args_num is not 2\033[0m"
+        node.value = np.power(node.inputs[0].value, node.inputs[1].value)
+
+    def gradient(self, node, this_grad):
+        return [node.inputs[1] * pow_op(node.inputs[0], node.inputs[1] - 1) * this_grad, pow_op(node.inputs[0], node.inputs[1]) * log(node.inputs[0]) * this_grad]
 
 
 class ReduceSumOp(Operator):
     """ReduceSumOp is for the reduce_sum function"""
-    def __call__(self, node_input, axis = None, keepdims = None, name = None, reduction_indices = None):
+    def __call__(self, node_input, axis = None, keepdims = False, reduction_indices = None):
         new_node = Operator.__call__(self)
         new_node.inputs = [node_input]
+        new_node.keepdims = keepdims
+        new_node.name = "reduce_sum(%s)" % node_input.name
+        if axis is None and reduction_indices is not None:
+            new_node.axis = reduction_indices[0]
+        else:
+            new_node.axis = axis
+        return new_node
+
+    def compute(self, node):
+        assert len(node.inputs) == 1, "\033[1;31mReduceSumOp compute args_num is not 1\033[0m"
+        node.value = np.sum(node.inputs[0].value, axis=node.axis, keepdims=node.keepdims)
+
+    def gradient(self, node, this_grad):
+        return [reduce_sum_gradient(node, this_grad = this_grad)]
+
+
+class ReduceSumGradientOp(Operator):
+    """This is for the gradient of reduce_sum"""
+    def __call__(self, node_input, this_grad):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node_input, this_grad]
+        new_node.name = "reduce_sum_grad(%s)" % this_grad.name
+        return new_node
+
+    def compute(self, node):
+        if node.inputs[0].axis is None:
+            node.value =  node.inputs[1].value
+            return
+        origin_shape = np.shape(node.inputs[0].value)
+        if not node.inputs[0].keepdims:
+            shape_list = list(origin_shape)
+            shape_list.insert(node.inputs[0].axis, 1)
+            new_shape = tuple(shape_list)
+        else:
+            new_shape = origin_shape
+        node.value = node.inputs[1].value
+        np.resize(node.value, new_shape)
+
+    def gradient(self, node, this_grad):
+        assert False, "ReduceSumGradient shouldn't appear in gradint"
+
+
+class ReduceMeanOp(Operator):
+    """ReduceMeanOp is for the reduce_sum function"""
+    def __call__(self, node_input, axis = None, keepdims = False, reduction_indices = None):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node_input]
+        new_node.keepdims = keepdims
+        new_node.name = "reduce_mean(%s)" % node_input.name
+        if axis is None and reduction_indices is not None:
+            new_node.axis = reduction_indices[0]
+        else:
+            new_node.axis = axis
+        return new_node
+
+    def compute(self, node):
+        assert len(node.inputs) == 1, "\033[1;31mReduceMeanOp compute args_num is not 1\033[0m"
+        node.value = np.mean(node.inputs[0].value, axis=node.axis, keepdims=node.keepdims)
+
+    def gradient(self, node, this_grad):
+        return [reduce_mean_gradient(node, this_grad = this_grad)]
+
+
+class ReduceMeanGradientOp(Operator):
+    """This is for the gradient of reduce_mean"""
+    def __call__(self, node_input, this_grad):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node_input, this_grad]
+        new_node.name = "reduce_mean_grad(%s)" % this_grad.name
+        return new_node
+
+    def compute(self, node):
+        origin_shape = np.shape(node.inputs[0].value)
+        origin_origin_shape = np.shape(node.inputs[0].inputs[0].value)
+        if node.inputs[0].axis is None:
+            shift = 1
+            for dim in origin_origin_shape:
+                shift *= dim
+            node.value =  node.inputs[1].value / shift
+            return
+        shift = origin_origin_shape[node.axis]
+        if not node.inputs[0].keepdims:
+            shape_list = list(origin_shape)
+            shape_list.insert(node.inputs[0].axis, 1)
+            new_shape = tuple(shape_list)
+        else:
+            new_shape = origin_shape
+        node.value = node.inputs[1].value / shift
+        np.resize(node.inputs[1].value / shift, new_shape)
+
+    def gradient(self, node, this_grad):
+        assert False, "ReduceMeanGradient shouldn't appear in gradint"
+
+
+class ReduceReshapeOp(Operator):
+    """This is for BP the gradient that are broadcast by numpy"""
+    def __call__(self, this_grad, origin_input):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [this_grad, origin_input]
+        new_node.name = this_grad.name
+        return new_node
+
+    def compute(self, node):
+        assert len(node.inputs) == 2, "\033[1;31mReduceReshapeOp compute args_num is not 2\033[0m"
+        value_A = node.inputs[0].value
+        value_B = node.inputs[1].value
+        while len(np.shape(value_A)) > len(np.shape(value_B)):
+            value_A = np.sum(value_A, axis = 0)
+        for dim in range(len(np.shape(value_A))):
+            if np.shape(value_A)[dim] > np.shape(value_B)[dim]:
+                value_A = np.sum(value_A, axis = dim, keepdims = True)
+        node.value = value_A
+
+    def gradient(self, node, this_grad):
+        return [this_grad, zeros_like(node.inputs[1])]
+
+
+class EqualOp(Operator):
+    """EqualOp is for the equal function"""
+    def __call__(self, node_A, node_B):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node_A, node_B]
+        new_node.name = "equal(%s, %s)" % (node_A.name, node_B.name)
+        return new_node
+
+    def compute(self, node):
+        node.value = node.inputs[0].value == node.inputs[1].value
+
+    def gradient(self, node, this_grad):
+        assert False, "\033[1;31mEqualOp shouldn't appear in gradient\033[0m"
+
+
+class CastOp(Operator):
+    """CastOp is for the cast function"""
+    def __init__(self):
+        self.dtype_map = {"float": np.float32, "float32": np.float32, "float64": np.float64, "int": np.int32, "int8": np.int8, "int16": np.int16}
+    def __call__(self, cast_input, dtype):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [cast_input]
+        new_node.dtype = self.dtype_map[dtype] if isinstance(dtype, str) else dtype
+        if isinstance(cast_input, Node):
+            new_node.name = "cast(%s)" % cast_input.name
+        else:
+            new_node.name = "cast"
+        return new_node
+
+    def compute(self, node):
+        if isinstance(node.inputs[0], Node):
+            node.value = node.dtype(node.inputs[0].value)
+        else:
+            node.value = node.dtype(node.inputs[0])
+
+    def gradient(self, node, this_grad):
+        return [this_grad]
+
+
+class ArgMaxOp(Operator):
+    """ArgMaxOp is for the argmax function"""
+    def __call__(self, input_node, axis = None, dimension = None, output_type = np.int64):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [input_node]
         new_node.axis = axis
-        new_node.name = name
-        new_node.reduction_indices = reduction_indices
-
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 1, "\033[1;31mReduceSumOp compute args_num is not 1\033[0m"
-
-
-class ReduceReshapeSumOp(Operator):
-    """ReduceReshapeSum is to reshape node_A to node_B by reduce_sum method"""
-    def __call__(self, node_A, node_B):
-        new_node = Operator.__call__(self)
-        new_node.inputs = [node_A, node_B]
-        new_node.name = "reduce_reshape_sum %s as shape of %s" % (node_A, node_B)
+        new_node.dimension = dimension
+        new_node.output_type = output_type
+        new_node.name = "Argmax(%s)" % input_node.name
         return new_node
 
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 2, "\033[1;31mReduceReshapeSumOp compute args_num is not 2\033[0m"
-        value = input_nodes[0].value
-        while len(value.shape) > len(input_nodes[1].value.shape):
-            value = np.sum(value, axis = 0)
-        for dim in range(len(value.shape)):
-            if value.shape[dim] > input_nodes[1].value.shape[dim]:
-                value = np.sum(value, axis = dim, keepdims = True)
-        node.value = value
+    def compute(self, node):
+        node.value = node.output_type(np.argmax(node.inputs[0].value, axis = node.axis))
 
     def gradient(self, node, this_grad):
-        return [broadcast_op(this_grad, node.inputs[0]), zeroslike_op(node.inputs[1])]
+        assert False, "\033[1;31mArgmaxOp shouldn't appear in gradient\033[0m"
 
 
-class ReduceReshapeMeanOp(Operator):
-    """ReduceReshapeMeanOp is to reshape node_A to node_B by reduce_mean method """
-    def __call__(self, node_A, node_B):
+class ReluGradientOp(Operator):
+    """ReluGradientOp is for the gradient of the relu function"""
+    def __call__(self, relu_output, this_grad):
         new_node = Operator.__call__(self)
-        new_node.inputs = [node_A, node_B]
-        new_node.name = "reduce_reshape_mean %s as shape of %s"
+        new_node.inputs = [relu_output, this_grad]
+        new_node.name = "relu_grad(%s, %s)" % (relu_output, this_grad)
         return new_node
 
-    def compute(self, node, input_nodes):
-        assert len(input_nodes) == 2, "\033[1;31mReduceReshapeMeanOp compute args_num is not 2\033[0m"
-        value = input_nodes[0].value
-        while len(value.shape) > len(input_nodes[1].value.shape):
-            value = np.mean(value, axis = 0)
-        for dim in range(len(value.shape)):
-            if value.shape[dim] > input_nodes[1].value.shape[dim]:
-                value = np.mean(value, axis = dim, keepdims = True)
-        node.value = value
+    def compute(self, node):
+        node.value = (np.sign(node.inputs[0].value) + 1) // 2 * node.inputs[1].value
 
     def gradient(self, node, this_grad):
-        assert False, "\033[1;31mReduceReshapeMeanOp can't gradient \033[0m"
+        assert False, "\033[1;31mReluGradientOp shouldn't appear in gradient\033[0m"
+
+
+class ZerosTensorOp(Operator):
+    """ZerosTensorOp is to get a tensor with the specific shape which elements are all zeros"""
+    def __call__(self, shape, dtype=np.float32, name=None):
+        return np.zeros(shape, dtype=dtype)
+
+    def compute(self, node):
+        assert False, "\033[1;31mZerosTensorOp doesn't support compute\033[0m"
+
+    def gradient(self, node, this_grad):
+        assert False, "\033[1;31mZerosTensorOp doesn't support gradient\033[0m"
+
+
+class OnesTensorOp(Operator):
+    """OnesTensorOp is to get a tensor with the specific shape which elements are all ones"""
+    def __call__(self, shape, dtype=np.float32, name=None):
+        return np.ones(shape, dtype=dtype)
+
+    def compute(self, node):
+        assert False, "\033[1;31mOnesTensorOp doesn't support compute\033[0m"
+
+    def gradient(self, node, this_grad):
+        assert False, "\033[1;31mOnesTensorOp doesn't support gradient\033[0m"
+
+
+class ZerosLikeOp(Operator):
+    """ZerosLikeOp is to get a new node of matrix with the same shape while its elements are all zeros"""
+    def __call__(self, node_input):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node_input]
+        new_node.name = "ZerosLike(%s)" % node_input.name
+        return new_node
+
+    def compute(self, node):
+        assert len(node.inputs) == 1, "\033[1;31m ZerosLikeOp compute args_num is not 1\033[0m"
+        shape = np.shape(node.inputs[0].value)
+        if shape == ():
+            shape = 1
+        node.value = np.zeros(shape = shape)
+
+    def gradient(self, node, this_grad):
+        return [zeros_like(node.inputs[0])]
+
+
+class OnesLikeOp(Operator):
+    """OnesLikeOp is to get a new matrix with the same shape while its elements are all ones"""
+    def __call__(self, node_input):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node_input]
+        new_node.name = "OnesLike(%s)" % node_input.name
+        return new_node
+
+    def compute(self, node):
+        shape = np.shape(node.inputs[0].value)
+        if shape == ():
+            shape = 1
+        node.value = np.ones(shape=shape)
+
+    def gradient(self, node, this_grad):
+        return [zeros_like(node.inputs[0])]
 
 
 class PlaceHolderOp(Operator):
     """PlaceHolderOp is to give a input node a position, the value is need feed"""
-    def __call__(self, dtype, shape=None, name=None):
+    def __call__(self, dtype=np.float32, shape=None, name=None):
         new_node = Operator.__call__(self)
         new_node.shape = shape
         new_node.name = name
+        new_node.dtype = dtype
         return new_node
 
-    def compute(self, node, input_nodes):
+    def compute(self, node):
         assert False, "\033[1;31mPlaceholder doesn't support compute\033[0m"
 
     def gradient(self, node, this_grad):
-        assert False, "\033[1;31mPlaceholder doesn't support gradient\033[0m"
+        return None
 
 
 class VariableOp(Operator):
@@ -450,18 +579,22 @@ class VariableOp(Operator):
         # variable_map is the map from variable to its type and value, usually for the initialize function
         # map value is a list, 0 is the type and 1 is the value of this variable
         self.variable_map = {}
+        self.trainable_list = []
 
-    def __call__(self, initial_value=None, name=None, dtype=None):
+    def __call__(self, initial_value=None, trainalbe=True, name=None, dtype=None):
         new_node = Operator.__call__(self)
         new_node.name = name
+        new_node.dtype = dtype
         self.variable_map[new_node] = [dtype, initial_value]
+        if trainalbe:
+            self.trainable_list.append(new_node)
         return new_node
 
-    def compute(self, node, input_nodes):
+    def compute(self, node):
         assert False, "\033[1;31mVariable doesn't support compute\033[0m"
 
     def gradient(self, node, this_grad):
-        assert False, "\033[1;31mVariable doesn't support gradient\033[0m"
+        return None
 
     def init_variabels(self):
         for key in self.variable_map:
@@ -470,37 +603,28 @@ class VariableOp(Operator):
                 key.value = value[1] if value[0] is None else value[0](value[1])
 
 
-class ZerosLikeOp(Operator):
-    """ZerosLikeOp is to get a new matrix with the same shape while its elements are all zeros"""
-    def __call__(self, node_input):
+class AssignOp(Operator):
+    """for the tf.assign operator"""
+    def __call__(self, node_assign, obj):
         new_node = Operator.__call__(self)
-        new_node.inputs = [node_input]
-        new_node.name = "ZerosLike(%s)" % node_input.name
+        if isinstance(obj, Node):
+            new_node.inputs = [node_assign, obj]
+            new_node.name = "Assign(%s, %s)" % (node_assign.name, obj.name)
+        else:
+            new_node.inputs = [node_assign]
+            new_node.obj_value = obj
+            new_node.name = "Assign(%s, %s)" % (node_assign.name, str(obj))
         return new_node
 
-    def compute(self, node, input_nodes):
-        """Return zeros_like of the same shape as input"""
-        assert isinstance(input_nodes[0].value, np.ndarray)
-        node.value = np.zeros(input_nodes[0].value.shape)
+    def compute(self, node):
+        if len(node.inputs) == 2:
+            node.inputs[0].value = node.inputs[1].value
+            node.value = node.inputs[0].value
+        else:
+            node.inputs[0].value = np.array(node.obj_value) if isinstance(node.obj_value, list) else node.obj_value
 
     def gradient(self, node, this_grad):
-        return [zeroslike_op(node.inputs[0])]
-
-
-class OnesLikeOp(Operator):
-    """ZerosLikeOp is to get a new matrix with the same shape while its elements are all ones"""
-    def __call__(self, node_input):
-        new_node = Operator.__call__(self)
-        new_node.inputs = [node_input]
-        new_node.name = "OnesLike(%s)" % node_input.name
-        return new_node
-
-    def compute(self, node, input_nodes):
-        assert isinstance(input_nodes[0].value, np.ndarray)
-        node.value = np.ones(input_nodes[0].value.shape)
-
-    def gradient(self, node, this_grad):
-        return [zeroslike_op(node.inputs[0])]
+        return None
 
 
 class GlobalInitializerOp(Operator):
@@ -510,30 +634,53 @@ class GlobalInitializerOp(Operator):
         new_node.name = "GlobalInitializer"
         return new_node
 
-    def compute(self, node, input_nodes):
-        variable_op.init_variabels()
+    def compute(self, node):
+        Variable.init_variabels()
 
     def gradient(self, node, this_grad):
         assert False, "GlobalInitializer shouldn't appear in gradint"
 
 
-# define some object of the class
-add_op = AddOp()
-add_op_const = AddOp()
-sub_op = SubOp()
-sub_op_const = SubByConstOp()
-rsub_op_const = RSubByConstOp()
-mul_op = MulOp()
-mul_op_const = MulByConstOp()
-div_op = DivOp()
-div_op_const = DivByConstOp()
-rdiv_op_const = RDivByConstOp()
-matmul_op = MatMulOp()
-broadcast_op = BroadCastOP()
-reducereshapesum_op = ReduceReshapeSumOp()
-reducereshapemean_op = ReduceReshapeMeanOp()
-oneslike_op = OnesLikeOp()
-zeroslike_op = ZerosLikeOp()
-variable_op = VariableOp()
-placeholder_op = PlaceHolderOp()
-global_initializer_op = GlobalInitializerOp()
+class MinimizeOp(Operator):
+    """MinimizeOp is to assist the Optimizer to calculate the train"""
+    def __call__(self, input_nodes):
+        new_node = Operator.__call__(self)
+        new_node.inputs = input_nodes
+        new_node.name = "Optimizer_Minimize(%s)" % (str([node.name for node in input_nodes]))
+        return new_node
+
+    def compute(self, node):
+        assert False, "\033[1;31mMinimizeOp shouldn't be compute\033[0m"
+
+    def gradient(self, node, this_grad):
+        assert False, "\033[1;31mMinimizeOp shouldn't be gradient\033[0m"
+
+# some object od the class Operation
+constant = ConstantOp()
+add = AddOp()
+sub = SubOp()
+mul = MulOp()
+div = DivOp()
+matmul = MatMulOp()
+exp = ExpOp()
+log = LogOp()
+sqrt = SqrtOp()
+pow_op = PowerOp()
+reduce_sum = ReduceSumOp()
+reduce_sum_gradient = ReduceSumGradientOp()
+reduce_mean = ReduceMeanOp()
+reduce_mean_gradient = ReduceMeanGradientOp()
+reduce_reshape = ReduceReshapeOp()
+equal = EqualOp()
+argmax = ArgMaxOp()
+cast = CastOp()
+zeros_like = ZerosLikeOp()
+ones_like = OnesLikeOp()
+zeros = ZerosTensorOp()
+ones = OnesTensorOp()
+placeholder = PlaceHolderOp()
+Variable = VariableOp()
+assign = AssignOp()
+global_variables_initializer = GlobalInitializerOp()
+minimize_op = MinimizeOp()
+relu_gradient = ReluGradientOp()

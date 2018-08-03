@@ -38,4 +38,4 @@ def sum_node_list(node_list):
 def feed_placeholder(feed_dict):
     for key in feed_dict:
         value = feed_dict[key]
-        key.value = np.array(value) if isinstance(value, list) else value
+        key.value = key.dtype(np.array(value)) if isinstance(value, list) else key.dtype(value)
