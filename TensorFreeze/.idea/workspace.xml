@@ -2,19 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7c477bb-70ba-46b0-aed4-890adbea137f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/dl-system-test/7_ml_perceptron.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dl-system-test/Neural_Network.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dl-system-test/Optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dl-system-test/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dl-system-test/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/1_adder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/2_init.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/3_assign.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/4_context.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/10_cnn_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/5_mnist_grad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/7_ml_perceptron.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/9_cnn_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/Neural_Network.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/Neural_Network.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dl-system-test/Node.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/Node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dl-system-test/TensorFreeze.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/TensorFreeze.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dl-system-test/assistance.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/assistance.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dl-system-test/run_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/run_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/struct.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/10_cnn_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/1_adder.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/testcase/1_adder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/4_context.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/testcase/4_context.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/6_mnist_optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/testcase/6_mnist_optimizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/9_cnn_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/MNIST_data/t10k-images-idx3-ubyte.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/MNIST_data/t10k-labels-idx1-ubyte.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/MNIST_data/train-images-idx3-ubyte.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/testcase/MNIST_data/train-labels-idx1-ubyte.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,54 +35,66 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/TensorFreeze$1_adder.coverage" NAME="1_adder Coverage Results" MODIFIED="1533135198703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$Optimizer.coverage" NAME="Optimizer Coverage Results" MODIFIED="1533214178194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$9_cnn_0.coverage" NAME="9_cnn_0 Coverage Results" MODIFIED="1533565196539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$a.coverage" NAME="a Coverage Results" MODIFIED="1532847954256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$2_init__1_.coverage" NAME="2_init (1) Coverage Results" MODIFIED="1532880078446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test/testcase" />
     <SUITE FILE_PATH="coverage/TensorFreeze$assistance.coverage" NAME="assistance Coverage Results" MODIFIED="1533135313928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
-    <SUITE FILE_PATH="coverage/TensorFreeze$5_mnist_grad.coverage" NAME="5_mnist_grad Coverage Results" MODIFIED="1533214052115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
-    <SUITE FILE_PATH="coverage/TensorFreeze$3_assign.coverage" NAME="3_assign Coverage Results" MODIFIED="1533135322031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
-    <SUITE FILE_PATH="coverage/TensorFreeze$7_ml_perceptron.coverage" NAME="7_ml_perceptron Coverage Results" MODIFIED="1533298311889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$5_mnist_grad.coverage" NAME="5_mnist_grad Coverage Results" MODIFIED="1533556816046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$3_assign.coverage" NAME="3_assign Coverage Results" MODIFIED="1533438301183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test/testcase" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$10_cnn_1.coverage" NAME="10_cnn_1 Coverage Results" MODIFIED="1533569869217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$7_ml_perceptron.coverage" NAME="7_ml_perceptron Coverage Results" MODIFIED="1533523217801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$run.coverage" NAME="run Coverage Results" MODIFIED="1532932876320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../onlinejudge/1014 /release" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$c_boost.coverage" NAME="c_boost Coverage Results" MODIFIED="1533563616350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$TensorFreeze.coverage" NAME="TensorFreeze Coverage Results" MODIFIED="1533556536375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$4_context.coverage" NAME="4_context Coverage Results" MODIFIED="1533135326252" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
-    <SUITE FILE_PATH="coverage/TensorFreeze$Node.coverage" NAME="Node Coverage Results" MODIFIED="1533047306253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$Node.coverage" NAME="Node Coverage Results" MODIFIED="1533523166292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$2_init.coverage" NAME="2_init Coverage Results" MODIFIED="1533057156196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$3_assign__1_.coverage" NAME="3_assign (1) Coverage Results" MODIFIED="1533438581471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$6_mnist_optimizer.coverage" NAME="6_mnist_optimizer Coverage Results" MODIFIED="1533214072003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
-    <SUITE FILE_PATH="coverage/TensorFreeze$8_adam.coverage" NAME="8_adam Coverage Results" MODIFIED="1533214197591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$8_adam.coverage" NAME="8_adam Coverage Results" MODIFIED="1533523272364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$autodiff.coverage" NAME="autodiff Coverage Results" MODIFIED="1532615334350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../autodiff/assignment1" />
     <SUITE FILE_PATH="coverage/TensorFreeze$autodiff_test.coverage" NAME="autodiff_test Coverage Results" MODIFIED="1532615448743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../autodiff/assignment1" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$Neural_Network.coverage" NAME="Neural_Network Coverage Results" MODIFIED="1533556337223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-183300041">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="19" />
+          <entry key="project.closed" value="23" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="13" />
+          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.6" value="18" />
           <entry key="project.open.time.7" value="5" />
-          <entry key="project.open.time.8" value="4" />
-          <entry key="project.opened" value="25" />
+          <entry key="project.open.time.8" value="5" />
+          <entry key="project.opened" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="67996" />
+          <entry key="cpp" value="20" />
+          <entry key="py" value="81122" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="67996" />
+          <entry key="C++" value="20" />
+          <entry key="Python" value="81122" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="184" />
+          <entry key="cpp" value="2" />
+          <entry key="pstat" value="1" />
+          <entry key="py" value="225" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="C++" value="2" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="182" />
+          <entry key="Profiler Session" value="1" />
+          <entry key="Python" value="223" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -81,26 +102,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/TensorFreeze.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="1792">
+              <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1533214141444" expanded="true" signature="104:130" ph="..." />
-                <marker date="1533214141444" expanded="true" signature="176:195" ph="..." />
-                <marker date="1533214141444" expanded="true" signature="2202:2270" ph="..." />
+                <marker date="1533565963136" expanded="true" signature="104:130" ph="..." />
+                <marker date="1533565963136" expanded="true" signature="176:195" ph="..." />
+                <marker date="1533565963136" expanded="true" signature="2281:2355" ph="..." />
+                <marker date="1533565963136" expanded="true" signature="2353:2355" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/6_mnist_optimizer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="15" column="74" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -108,17 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/assistance.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dl-system-test/9_cnn_1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+            <state relative-caret-position="1120">
+              <caret line="40" column="61" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -126,11 +130,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/Optimizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+            <state relative-caret-position="308">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dl-system-test/10_cnn_1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="892">
+              <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dl-system-test/11_cnn_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -138,22 +160,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/Neural_Network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="1316">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1533133492451" expanded="true" signature="552:1989" ph="..." />
-                <marker date="1533133492451" expanded="true" signature="1098:1989" ph="..." />
+                <marker date="1533564823206" expanded="true" signature="552:1977" ph="..." />
+                <marker date="1533564823206" expanded="true" signature="1098:1977" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dl-system-test/7_ml_perceptron.py">
+        <entry file="file://$PROJECT_DIR$/dl-system-test/c_boost.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="1680">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <marker date="1533569850794" expanded="true" signature="8731:8732" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,28 +187,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/Node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="185" selection-start-line="185" selection-end-line="185" />
+            <state relative-caret-position="15960">
+              <caret line="573" column="82" selection-start-line="573" selection-start-column="82" selection-end-line="573" selection-end-column="82" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
-                <marker date="1533214012761" expanded="true" signature="1107:1168" ph="..." />
-                <marker date="1533214012761" expanded="true" signature="3598:3603" ph="..." />
-                <marker date="1533214012761" expanded="true" signature="3598:4102" ph="..." />
-                <marker date="1533214012761" expanded="true" signature="10255:10930" ph="..." />
-                <marker date="1533214012761" expanded="true" signature="14795:18348" ph="..." />
-                <marker date="1533214012761" expanded="true" signature="16295:16446" ph="..." />
-                <marker date="1533214012761" expanded="true" signature="17800:18348" ph="..." />
-                <marker date="1533214012761" expanded="true" signature="23434:23962" ph="..." />
+                <marker date="1533565878094" expanded="true" signature="17457:17997" ph="..." />
+                <marker date="1533565878094" expanded="true" signature="18021:18026" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dl-system-test/run_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -214,10 +225,19 @@
       <find>arg</find>
       <find>argm</find>
       <find>cls</find>
+      <find>input_shape</find>
+      <find>sensitive</find>
+      <find>#</find>
+      <find>max_pool_boost</find>
+      <find>np.reshape</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>\\033[0m&quot;\n</replace>
       <replace>reduce_reshape_mean_op</replace>
+      <replace>sensitive_shape</replace>
+      <replace>sensitivity</replace>
+      <replace>#</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -236,20 +256,28 @@
         <option value="$PROJECT_DIR$/dl-system-test/testcase/6_mnist_optimizer.py" />
         <option value="$PROJECT_DIR$/dl-system-test/a.py" />
         <option value="$PROJECT_DIR$/../../onlinejudge/1014 /release/run.py" />
-        <option value="$PROJECT_DIR$/dl-system-test/3_assign.py" />
         <option value="$PROJECT_DIR$/dl-system-test/4_context.py" />
         <option value="$PROJECT_DIR$/dl-system-test/Node_bak.py" />
-        <option value="$PROJECT_DIR$/dl-system-test/assistance.py" />
-        <option value="$PROJECT_DIR$/dl-system-test/5_mnist_grad.py" />
-        <option value="$PROJECT_DIR$/dl-system-test/9_cnn_1.py" />
-        <option value="$PROJECT_DIR$/dl-system-test/Neural_Network.py" />
         <option value="$PROJECT_DIR$/dl-system-test/6_mnist_optimizer.py" />
-        <option value="$PROJECT_DIR$/dl-system-test/8_adam.py" />
         <option value="$PROJECT_DIR$/dl-system-test/Optimizer.py" />
-        <option value="$PROJECT_DIR$/dl-system-test/Node.py" />
-        <option value="$PROJECT_DIR$/dl-system-test/TensorFreeze.py" />
         <option value="$PROJECT_DIR$/dl-system-test/run_test.py" />
         <option value="$PROJECT_DIR$/dl-system-test/7_ml_perceptron.py" />
+        <option value="$PROJECT_DIR$/../../ppca出题/验题/PPCA-2-73/data.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/9_cnn_1.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/3_assign.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/assistance.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/5_mnist_grad.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/boost.cpp" />
+        <option value="$PROJECT_DIR$/dl-system-test/myboost.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/boost.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/8_adam.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/Neural_Network.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/9_cnn_0.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/Node.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/TensorFreeze.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/c_boost.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/10_cnn_1.py" />
+        <option value="$PROJECT_DIR$/dl-system-test/11_cnn_2.py" />
       </list>
     </option>
   </component>
@@ -260,9 +288,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="71" />
-    <option name="y" value="26" />
-    <option name="width" value="1849" />
+    <option name="x" value="162" />
+    <option name="y" value="44" />
+    <option name="width" value="1653" />
     <option name="height" value="1054" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -270,31 +298,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="TensorFreeze" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorFreeze" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorFreeze" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorFreeze" type="462c0819:PsiDirectoryNode" />
-              <item name="dl-system-test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorFreeze" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorFreeze" type="462c0819:PsiDirectoryNode" />
-              <item name="dl-system-test" type="462c0819:PsiDirectoryNode" />
-              <item name="testcase" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="softmax_cross_entropy_with_logits&#9;ACTION&#9;null&#10;se&#9;null&#9;null&#10;tf.constant&#9;null&#9;null" />
@@ -302,7 +306,7 @@
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -338,7 +342,30 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.7_ml_perceptron">
+  <component name="RunManager" selected="Python.10_cnn_1">
+    <configuration name="10_cnn_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TensorFreeze" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="LD_LIBRARY_PATH" value="/usr/local/cuda-9.0/lib64" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dl-system-test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dl-system-test/10_cnn_1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="5_mnist_grad" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TensorFreeze" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -362,7 +389,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="6_mnist_optimizer" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="9_cnn_0" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TensorFreeze" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -376,7 +403,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dl-system-test/6_mnist_optimizer.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dl-system-test/9_cnn_0.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -385,7 +412,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="7_ml_perceptron" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="TensorFreeze" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TensorFreeze" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -399,53 +426,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dl-system-test/7_ml_perceptron.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="8_adam" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="TensorFreeze" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="LD_LIBRARY_PATH" value="/usr/local/cuda-9.0/lib64" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python3" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dl-system-test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dl-system-test/8_adam.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Optimizer" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="TensorFreeze" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="LD_LIBRARY_PATH" value="/usr/local/cuda-9.0/lib64" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python3" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dl-system-test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dl-system-test/Optimizer.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dl-system-test/TensorFreeze.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -477,20 +458,43 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="c_boost" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TensorFreeze" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="LD_LIBRARY_PATH" value="/usr/local/cuda-9.0/lib64" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dl-system-test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dl-system-test/c_boost.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Python.9_cnn_0" />
+      <item itemvalue="Python.10_cnn_1" />
+      <item itemvalue="Python.TensorFreeze" />
       <item itemvalue="Python.5_mnist_grad" />
-      <item itemvalue="Python.Optimizer" />
-      <item itemvalue="Python.8_adam" />
-      <item itemvalue="Python.6_mnist_optimizer" />
-      <item itemvalue="Python.7_ml_perceptron" />
+      <item itemvalue="Python.c_boost" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.7_ml_perceptron" />
-        <item itemvalue="Python.8_adam" />
-        <item itemvalue="Python.Optimizer" />
-        <item itemvalue="Python.6_mnist_optimizer" />
+        <item itemvalue="Python.10_cnn_1" />
+        <item itemvalue="Python.9_cnn_0" />
+        <item itemvalue="Python.c_boost" />
         <item itemvalue="Python.5_mnist_grad" />
+        <item itemvalue="Python.TensorFreeze" />
       </list>
     </recent_temporary>
   </component>
@@ -512,14 +516,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="26" width="1849" height="1054" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22512507" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24235687" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25236243" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.325" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39673913" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35869566" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34021738" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -534,6 +539,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32962757" />
       <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,64 +576,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../autodiff/assignment1/autodiff.py" />
-    <entry file="file://$PROJECT_DIR$/../autodiff/assignment1/autodiff_test.py" />
-    <entry file="file://$PROJECT_DIR$/dl-system-test/Operator.py" />
-    <entry file="file://$PROJECT_DIR$/dl-system-test/autodiff_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/toposort.py" />
-    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/1_adder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/7_ml_perceptron.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2268">
-          <caret line="81" column="58" lean-forward="true" selection-start-line="81" selection-start-column="58" selection-end-line="81" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/8_adam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/10_cnn_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1148">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/pywrap_tensorflow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/util/tf_inspect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5740">
-          <caret line="215" selection-start-line="215" selection-end-line="215" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python3.6/inspect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58576">
-          <caret line="2110" selection-start-line="2110" selection-end-line="2110" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/eager/context.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19936">
@@ -656,20 +604,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/a.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/4_context.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="30" lean-forward="true" selection-start-column="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/a.py" />
     <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/2_init.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -691,13 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="835">
           <caret line="323" column="30" lean-forward="true" selection-start-line="323" selection-start-column="30" selection-end-line="323" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/3_assign.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="16" column="28" selection-end-line="33" />
         </state>
       </provider>
     </entry>
@@ -771,86 +699,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/10_cnn_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1092" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dl-system-test/2_init.py" />
-    <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dl-system-test/1_adder.py" />
-    <entry file="file://$PROJECT_DIR$/dl-system-test/3_assign.py" />
     <entry file="file://$PROJECT_DIR$/dl-system-test/4_context.py" />
-    <entry file="file://$PROJECT_DIR$/dl-system-test/5_mnist_grad.py" />
     <entry file="file://$PROJECT_DIR$/dl-system-test/6_mnist_optimizer.py" />
-    <entry file="file://$PROJECT_DIR$/dl-system-test/8_adam.py" />
-    <entry file="file://$PROJECT_DIR$/dl-system-test/9_cnn_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/Optimizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/run_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/Neural_Network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1533133492451" expanded="true" signature="552:1989" ph="..." />
-            <marker date="1533133492451" expanded="true" signature="1098:1989" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/Node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="185" selection-start-line="185" selection-end-line="185" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-            <marker date="1533214012761" expanded="true" signature="1107:1168" ph="..." />
-            <marker date="1533214012761" expanded="true" signature="3598:3603" ph="..." />
-            <marker date="1533214012761" expanded="true" signature="3598:4102" ph="..." />
-            <marker date="1533214012761" expanded="true" signature="10255:10930" ph="..." />
-            <marker date="1533214012761" expanded="true" signature="14795:18348" ph="..." />
-            <marker date="1533214012761" expanded="true" signature="16295:16446" ph="..." />
-            <marker date="1533214012761" expanded="true" signature="17800:18348" ph="..." />
-            <marker date="1533214012761" expanded="true" signature="23434:23962" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/assistance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/6_mnist_optimizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -858,23 +710,152 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/7_ml_perceptron.py">
+    <entry file="file://$PROJECT_DIR$/../../ppca出题/验题/PPCA-2-73/data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="392">
+          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/ops/gen_nn_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1389">
+          <caret line="875" column="4" selection-start-line="875" selection-start-column="4" selection-end-line="875" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/ops/gen_array_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="6129" lean-forward="true" selection-start-line="6129" selection-end-line="6129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/10_cnn_2.py" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/9_cnn_1.py" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/3_assign.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/boost.cpp" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/myboost.py" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/boost.py" />
+    <entry file="file:///usr/lib/python3/dist-packages/apport_python_hook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/4_context.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/3_assign.py" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/8_adam.py" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/7_ml_perceptron.py" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/run_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/5_mnist_grad.py" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/9_cnn_0.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-504" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/9_cnn_0.py" />
+    <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/10_cnn_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-840" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dl-system-test/TensorFreeze.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="1792">
+          <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1533214141444" expanded="true" signature="104:130" ph="..." />
-            <marker date="1533214141444" expanded="true" signature="176:195" ph="..." />
-            <marker date="1533214141444" expanded="true" signature="2202:2270" ph="..." />
+            <marker date="1533565963136" expanded="true" signature="104:130" ph="..." />
+            <marker date="1533565963136" expanded="true" signature="176:195" ph="..." />
+            <marker date="1533565963136" expanded="true" signature="2281:2355" ph="..." />
+            <marker date="1533565963136" expanded="true" signature="2353:2355" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/assistance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1120">
+          <caret line="40" column="61" selection-start-line="40" selection-start-column="61" selection-end-line="40" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/Optimizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/Neural_Network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1316">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1533564823206" expanded="true" signature="552:1977" ph="..." />
+            <marker date="1533564823206" expanded="true" signature="1098:1977" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/c_boost.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1533569850794" expanded="true" signature="8731:8732" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/Node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15960">
+          <caret line="573" column="82" selection-start-line="573" selection-start-column="82" selection-end-line="573" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <marker date="1533565878094" expanded="true" signature="17457:17997" ph="..." />
+            <marker date="1533565878094" expanded="true" signature="18021:18026" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/10_cnn_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="892">
+          <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/11_cnn_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
         </state>
       </provider>
     </entry>

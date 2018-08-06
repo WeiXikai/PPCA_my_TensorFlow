@@ -46,8 +46,10 @@ class nn:
 
         def gradient(self, node, this_grad):
             return [this_grad * (nn.softmax(node.inputs[0]) - node.inputs[1]), zeros_like(node.inputs[1])]
-            
+
 
     softmax = SoftMaxOp()
     relu = ReluOp()
     softmax_cross_entropy_with_logits = SoftMaxCELOp()
+    conv2d = Conv2d_Op()
+    max_pool = MaxPoolOp()

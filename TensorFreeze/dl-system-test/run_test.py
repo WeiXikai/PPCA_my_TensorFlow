@@ -12,23 +12,22 @@ tests = [
     ["optimizer",   "6_mnist_optimizer.py"],
     ["multilayer perceptron", "7_ml_perceptron.py"],
     ["adam optimizer",        "8_adam.py"],
-    ["CNN 1",       "9_cnn_1.py"],
-    ["CNN 2",       "10_cnn_2.py"]
+    ["CNN 0",       "9_cnn_0.py"],
+    ["CNN 1",       "10_cnn_1.py"],
+    ["CNN 2",       "11_cnn_2.py"]
 ]
 
 def main(model_name):
     for i, item in enumerate(tests):
-        if i == 8:
-            exit(0)
         test_name = item[0]
         file_name = item[1]
 
-        print("========== test %d %s ==========" % (i, test_name))
+        print("========== test %d %s ==========" % (i+1, test_name))
 
         os.system("cp %s %s" % (os.path.join(testcase_dir, file_name),
                                                     file_name))
         os.system("sed -i 's/your_model/%s/' %s" % (model_name, file_name))
-        ret = os.system("%s %s 2>/dev/null" % (python_cmd, file_name))
+        ret = os.system("%s %s" % (python_cmd, file_name))
         if ret != 0:
             exit(0)
         os.system("rm %s" % (file_name))

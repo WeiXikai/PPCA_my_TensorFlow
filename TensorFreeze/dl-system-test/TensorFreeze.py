@@ -23,7 +23,9 @@ class Session:
         for node in topo_order:
             if isinstance(node.op, PlaceHolderOp) or isinstance(node.op, VariableOp) or isinstance(node.op, MinimizeOp):
                 continue
+            # print("start", node.op)
             node.op.compute(node)
+            # print("finished", node.op)
         return [node.value for node in eval_node_list] if isinstance(obj_nodes, list) else obj_nodes.value
 
 
@@ -57,8 +59,7 @@ def gradients(output_node, node_list):
 
 
 def random_normal(shape, mean=0.0, stddev=1.0, dtype=np.float32, seed=None, name=None):
-    return np.random.normal(loc=mean, scale=stddev, size=shape)
-
+    return dtype(np.random.normal(loc=mean, scale=stddev, size=shape))
 
 
 # import dtype from numpy
