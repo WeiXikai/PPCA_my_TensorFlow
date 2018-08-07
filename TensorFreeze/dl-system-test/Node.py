@@ -681,6 +681,40 @@ class MaxPoolGradOp(Operator):
     def gradient(self, node, this_grad):
         assert False, "MaxPoolGradOp can't calculate gradient"
 
+
+class DropOutOp(Operator):
+    """DropOutOp is for the dropout method"""
+    def __call__(self, node_input, keep_prob):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node_input, keep_prob]
+        new_node.name = "DropOut(%s)" % (node_input.name)
+        return new_node
+
+    def compute(self, node):
+        input_shape = np.shape(node.inputs[0].value)
+        keep_prob = node.inputs[1].value
+        node.prob_mat = (np.float32)((np.random.rand(*input_shape) < keep_prob) / keep_prob)
+        node.value = node.inputs[0].value * node.prob_mat
+
+    def gradient(self, node, this_grad):
+        return [dropout_grad(node, this_grad), zeros_like(node.inputs[1])]
+
+
+class DropOutGrad(Operator):
+    """DropOutGrad is for the gradient of the dropout function"""
+    def __call__(self, node, this_grad):
+        new_node = Operator.__call__(self)
+        new_node.inputs = [node, this_grad]
+        new_node.name = "Dropout_Grad(%s)" % (this_grad.name)
+        return new_node
+
+    def compute(self, node):
+        node.value = node.inputs[0].prob_mat * node.inputs[1].value
+
+    def gradient(self, node, this_grad):
+        assert False, "DropOutGrad shouldn't gradient"
+
+
 class ZerosTensorOp(Operator):
     """ZerosTensorOp is to get a tensor with the specific shape which elements are all zeros"""
     def __call__(self, shape, dtype=np.float32, name=None):
@@ -880,3 +914,4 @@ relu_gradient = ReluGradientOp()
 conv2d_gi = Conv2d_Input_GradOp()
 conv2d_gw = Conv2d_Filter_GradOp()
 maxpool_grad = MaxPoolGradOp()
+dropout_grad = DropOutGrad()

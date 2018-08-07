@@ -75,8 +75,8 @@ with tf.Session() as sess:
             print('Step %d, trainning accuracy %s' % (i, str(train_accuracy)))
 
         train_step.run(feed_dict={x: batch[0], y_: batch[1]})
-    # ans = accuracy.eval(feed_dict={ x:mnist.test.images,
-    #                                 y_: mnist.test.labels})
-    # print('Test accuracy: %g' % ans)
-    # assert ans > 0.88
+    ans = accuracy.eval(feed_dict={ x:mnist.test.images,
+                                    y_: mnist.test.labels})
+    print('Test accuracy: %g' % ans)
+    assert ans > 0.88
 

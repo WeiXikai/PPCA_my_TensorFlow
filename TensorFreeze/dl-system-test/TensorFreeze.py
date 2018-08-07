@@ -44,6 +44,7 @@ def gradients(output_node, node_list):
     reverse_topo_order = reversed(find_topo_sort([output_node]))
 
     for node in reverse_topo_order:
+        # print("gradient_started: ", node.name)
         grad = sum_node_list(node_to_output_grads_list[node])
         node_to_output_grad[node] = grad
         if node.op.gradient is None:
@@ -53,6 +54,7 @@ def gradients(output_node, node_list):
             tmp_former_list = node_to_output_grads_list.get(node.inputs[i], [])
             tmp_former_list.append(op_grad[i])
             node_to_output_grads_list[node.inputs[i]] = tmp_former_list
+        # print("gradient_finished: ", node.name)
     # Collect results for gradients requested.
     grad_node_list = [node_to_output_grad[node] for node in node_list]
     return grad_node_list

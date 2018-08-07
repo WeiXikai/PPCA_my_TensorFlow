@@ -18,8 +18,8 @@ def max_pool_2x2(x):
             padding='SAME')
 
 # input
-x = tf.placeholder(tf.float32, shape=[None, 784])
-y_ = tf.placeholder(tf.float32, shape=[None, 10])
+x = tf.placeholder(tf.float32, shape=[None, 784], name='x')
+y_ = tf.placeholder(tf.float32, shape=[None, 10], name='W')
 
 # first layer
 W_conv1 = weight_variable([5, 5, 1, 32])
@@ -44,7 +44,7 @@ h_pool2_flat = tf.reshape(h_pool1, [-1, 7*7*64])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
 
 # dropout
-keep_prob = tf.placeholder(tf.float32)
+keep_prob = tf.placeholder(tf.float32, name='keep_prob')
 h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 
 # readout layer
@@ -69,10 +69,10 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for i in range(200):
         batch = mnist.train.next_batch(100)
-        if i % 50 == 0:
-            train_accuracy = accuracy.eval(feed_dict = { x: batch[0],
+        if i % 10 == 0:
+            train_accuracy = sess.run([accuracy, cross_entropy], feed_dict = { x: batch[0],
                                            y_: batch[1], keep_prob: 1.0})
-            print('step %d, trainning accuracy %g' % (i, train_accuracy))
+            print('step %d, trainning accuracy %s' % (i, str(train_accuracy)))
 
         train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 

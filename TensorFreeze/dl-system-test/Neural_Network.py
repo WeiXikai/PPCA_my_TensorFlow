@@ -53,3 +53,4 @@ class nn:
     softmax_cross_entropy_with_logits = SoftMaxCELOp()
     conv2d = Conv2d_Op()
     max_pool = MaxPoolOp()
+    dropout = DropOutOp()

@@ -12,29 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c0a04628-da20-4e54-b4c2-28ae9fb6ae4f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/10_cnn_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/5_mnist_grad.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/7_ml_perceptron.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/9_cnn_1.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Neural_Network.py" beforeDir="false" afterPath="$PROJECT_DIR$/Neural_Network.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Node.py" beforeDir="false" afterPath="$PROJECT_DIR$/Node.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TensorFreeze.py" beforeDir="false" afterPath="$PROJECT_DIR$/TensorFreeze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assistance.py" beforeDir="false" afterPath="$PROJECT_DIR$/assistance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/10_cnn_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/1_adder.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcase/1_adder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/4_context.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcase/4_context.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/6_mnist_optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcase/6_mnist_optimizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/9_cnn_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/MNIST_data/t10k-images-idx3-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/MNIST_data/t10k-labels-idx1-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/MNIST_data/train-images-idx3-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/MNIST_data/train-labels-idx1-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../test.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,8 +45,8 @@
           <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -105,8 +85,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/boost_cc.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="896">
-              <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
+            <state relative-caret-position="644">
+              <caret line="32" column="54" lean-forward="true" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -205,14 +185,16 @@
       <workItem from="1533458451439" duration="15301000" />
       <workItem from="1533517326314" duration="13888000" />
       <workItem from="1533558632129" duration="5982000" />
+      <workItem from="1533573986812" duration="651000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35171000" />
+    <option name="totallyTimeSpent" value="35822000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="26" width="1849" height="1054" extended-state="6" />
+    <frame x="71" y="26" width="1849" height="1054" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.49781182" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -256,8 +238,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/boost_cc.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="896">
-          <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
+        <state relative-caret-position="644">
+          <caret line="32" column="54" lean-forward="true" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
         </state>
       </provider>
     </entry>
