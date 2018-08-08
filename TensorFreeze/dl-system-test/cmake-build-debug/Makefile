@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/wymt/code/ppca_tftask/TensorFreeze/dl-system-test/cmake
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/wymt/clion-2018.1.6/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/wymt/clion-2018.1.6/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named dl_system_test
+# Target rules for targets named boost_cc
 
 # Build rule for target.
-dl_system_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dl_system_test
-.PHONY : dl_system_test
+boost_cc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 boost_cc
+.PHONY : boost_cc
 
 # fast build rule for target.
-dl_system_test/fast:
-	$(MAKE) -f CMakeFiles/dl_system_test.dir/build.make CMakeFiles/dl_system_test.dir/build
-.PHONY : dl_system_test/fast
+boost_cc/fast:
+	$(MAKE) -f CMakeFiles/boost_cc.dir/build.make CMakeFiles/boost_cc.dir/build
+.PHONY : boost_cc/fast
 
 boost_cc.o: boost_cc.cpp.o
 
@@ -129,7 +129,7 @@ boost_cc.o: boost_cc.cpp.o
 
 # target to build an object file
 boost_cc.cpp.o:
-	$(MAKE) -f CMakeFiles/dl_system_test.dir/build.make CMakeFiles/dl_system_test.dir/boost_cc.cpp.o
+	$(MAKE) -f CMakeFiles/boost_cc.dir/build.make CMakeFiles/boost_cc.dir/boost_cc.cpp.o
 .PHONY : boost_cc.cpp.o
 
 boost_cc.i: boost_cc.cpp.i
@@ -138,7 +138,7 @@ boost_cc.i: boost_cc.cpp.i
 
 # target to preprocess a source file
 boost_cc.cpp.i:
-	$(MAKE) -f CMakeFiles/dl_system_test.dir/build.make CMakeFiles/dl_system_test.dir/boost_cc.cpp.i
+	$(MAKE) -f CMakeFiles/boost_cc.dir/build.make CMakeFiles/boost_cc.dir/boost_cc.cpp.i
 .PHONY : boost_cc.cpp.i
 
 boost_cc.s: boost_cc.cpp.s
@@ -147,7 +147,7 @@ boost_cc.s: boost_cc.cpp.s
 
 # target to generate assembly for a file
 boost_cc.cpp.s:
-	$(MAKE) -f CMakeFiles/dl_system_test.dir/build.make CMakeFiles/dl_system_test.dir/boost_cc.cpp.s
+	$(MAKE) -f CMakeFiles/boost_cc.dir/build.make CMakeFiles/boost_cc.dir/boost_cc.cpp.s
 .PHONY : boost_cc.cpp.s
 
 # Help Target
@@ -156,9 +156,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... dl_system_test"
+	@echo "... rebuild_cache"
+	@echo "... boost_cc"
 	@echo "... boost_cc.o"
 	@echo "... boost_cc.i"
 	@echo "... boost_cc.s"

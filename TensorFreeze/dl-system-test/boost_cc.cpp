@@ -1,4 +1,6 @@
 #include <cstdio>
+#include <stdlib.h>
+#include <cstring>
 
 // *(a + f(i, j, k, h, i_size, j_size, k_size)) is for the a[i][j][k][h])
 inline int find(const int &i, const int &j, const int &k, const int &w, const int &j_size, const int &k_size, const int &w_size)
@@ -11,6 +13,28 @@ inline float max(const float &a, const float &b)
     return a > b ? a : b;
 }
 
+inline int mat_find(const int &i, const int &j, const int &j_size)
+{
+    return i * j_size + j;
+}
+
+inline void matmul(const int &m, const int &n, const int &k, const float &alpha, float *a,
+                 const int &lda, float *b, const int &ldb, const float &beta, float *c, const int &ldc)
+{
+    
+    for (register int w = 0; w < k; w++)
+    {
+        for (register int i = 0; i < m; i++)
+        {
+            for (register int j = 0; j < n; j++)
+            {
+        
+                *(c + mat_find(i, j, n)) += *(a + mat_find(i, w, k)) * (*(b + mat_find(w, j, n))) * alpha
+                                            + (*(c + mat_find(i, j, n))) * beta;
+            }
+        }
+    }
+}
 
 extern "C"
 int conv2d(float* input_tensor, float *output_tensor, float* filter,
@@ -18,7 +42,7 @@ int conv2d(float* input_tensor, float *output_tensor, float* filter,
            int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
            int filter_height, int filter_width, int output_channels)
 {
-    int b = 0; // batch number
+    register int b = 0; // batch number
     int f = 0; // filter number/output_channel number
     int c = 0; // input_channel number
     int si_max = input_height - filter_height + 1;
@@ -27,24 +51,35 @@ int conv2d(float* input_tensor, float *output_tensor, float* filter,
     int sj = 0; // the j_pos of the left_up block of filter in the input
     int ci = 0; // the current calculate block i_pos in the filter
     int cj = 0; // the current calculate block j_pos in the filter
+    float *input_flatten = (float *)malloc(batch_size * filter_height * filter_width * input_channels * si_max * sj_max * sizeof(float));
     for (b = 0; b < batch_size; b += stride_batch)
+    {
         for (si = 0; si < si_max; si += stride_in_height)
+        {
             for (sj = 0; sj < sj_max; sj += stride_in_width)
+            {
                 for (ci = 0; ci < filter_height; ci++)
-                    for (cj = 0; cj < filter_width; cj++)
-                        for (c = 0; c < input_channels; c += stride_in_channel)
-                            for (f = 0; f < output_channels; f++)
-                                *(output_tensor + find(b, si, sj, f, si_max, sj_max, output_channels)) +=
-                                        *(input_tensor + find(b, si + ci, sj + cj, c, input_height, input_width, input_channels))
-                                        * (*(filter + find(ci, cj, c, f, filter_width, input_channels, output_channels)));
+                {
+                    memcpy(input_flatten + b * filter_height * filter_width * input_channels * si_max * sj_max + find(si, sj, ci, 0, sj_max, filter_height, filter_width * input_channels),
+                           input_tensor + find(b, si + ci, sj, 0, input_height, input_width, input_channels),
+                            filter_width * input_channels * sizeof(float));
+                }
+            }
+        }
+    }
+    puts("enter matmul in conv2d");
+    matmul(batch_size * si_max * sj_max, output_channels, filter_height * filter_width * input_channels, 1, input_flatten, filter_height * filter_width * input_channels,
+           filter, output_channels, 0, output_tensor, output_channels);
+    puts("exit matmul in conv2d\n");
+    free(input_flatten);
     return 0;
 }
 
 extern "C"
 int conv2d_gi(float* sensitivity_map, float* filter, float* result,
-              int batch_size, int sensitivity_height, int sensitivity_width, int sensitivity_channels,
-              int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
-              int filter_height, int filter_width, int input_channels)
+                    int batch_size, int sensitivity_height, int sensitivity_width, int sensitivity_channels,
+                    int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
+                    int filter_height, int filter_width, int input_channels)
 {
     int b = 0; // batch number
     int f = 0; // filter number/sensitivity_channel number
@@ -55,22 +90,61 @@ int conv2d_gi(float* sensitivity_map, float* filter, float* result,
     int sj = 0; // the j_pos of the left_up block of filter in the sensitivity_map
     int ci = 0; // the current calculate block i_pos in the filter, need to reverse
     int cj = 0; // the current calculate block j_pos in the filter, need to reverse
+    float *sensitivity_flatten = (float*)malloc(batch_size * si_max * sj_max * filter_height * filter_width * sensitivity_channels * sizeof(float));
+    float *filter_flatten = (float*)malloc(filter_height * filter_width * input_channels * sensitivity_channels * sizeof(float));
+    
+    for (ci = 0; ci < filter_height; ci++)
+        for (cj = 0; cj < filter_width; cj++)
+            for (c = 0; c < input_channels; c++)
+                for (f = 0; f < sensitivity_channels; f++)
+                    *(filter_flatten + find(ci, cj, f, c, filter_width, sensitivity_channels, input_channels))
+                    = *(filter + find(filter_height - ci - 1, filter_width - cj - 1, c, f, filter_width, input_channels, sensitivity_channels));
+    
     for (b = 0; b < batch_size; b += stride_batch)
+    {
         for (si = 0; si < si_max; si += stride_in_height)
+        {
             for (sj = 0; sj < sj_max; sj += stride_in_width)
-                for (ci = 0; ci < filter_height; ci++) //reverse
-                    for (cj = 0; cj < filter_width; cj++) //reverse
-                        for (c = 0; c < input_channels; c += stride_in_channel)
-                            for (f = 0; f < sensitivity_channels; f++)
-                                *(result + find(b, si, sj, c, si_max, sj_max, input_channels)) +=
-                                        *(sensitivity_map + find(b, si + ci, sj + cj, f, sensitivity_height, sensitivity_width, sensitivity_channels))
-                                        * ( *(filter + find(filter_height - ci - 1, filter_width - cj - 1, c, f, filter_width, input_channels, sensitivity_channels)));
-                            
+            {
+                for (ci = 0; ci < filter_height; ci++)
+                {
+                    memcpy(sensitivity_flatten + b * filter_height * filter_width * sensitivity_channels * si_max * sj_max + find(si, sj, ci, 0, sj_max, filter_height, filter_width * sensitivity_channels),
+                           sensitivity_map + find(b, si + ci, sj, 0, sensitivity_height, sensitivity_width, sensitivity_channels),
+                           filter_width * sensitivity_channels * sizeof(float));
+                }
+            }
+        }
+    }
+    puts("enter matmul in conv2d_gi");
+    matmul(batch_size * si_max * sj_max, input_channels, filter_height * filter_width * sensitivity_channels, 1, sensitivity_flatten, filter_height * filter_width * sensitivity_channels,
+           filter_flatten, input_channels, 0, result, input_channels);
+    puts("exit matmul in conv2d_gi\n");
+    free(sensitivity_flatten);
+    free(filter_flatten);
     return 0;
 }
 
 extern "C"
 int conv2d_gw(float *input_tensor, float *sensitivity_map, float* result,
+            int batch_size, int input_height, int input_width, int input_channels,
+            int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
+            int sensitivity_height, int sensitivity_width, int sensitivity_channels)
+{
+    int b = 0; // batch number
+    int f = 0; // sensitivity_channel number
+    int c = 0; // input_channel
+    int ci_max = input_height - sensitivity_height + 1;
+    int cj_max = input_width - sensitivity_width + 1;
+    int ci = 0; // the i_pos of the left_up block of sensitivity_map in the input_padding
+    int cj = 0; // the j_pos of the left_up block of sensitivity_map in the input_padding
+    int si = 0; // the current calculate block i_pos in the sensitivity_map
+    int sj = 0; // the current calculate block j_pos in the sensitivity_map
+    
+    return 0;
+}
+
+extern "C"
+int conv2d_gw_right(float *input_tensor, float *sensitivity_map, float* result,
               int batch_size, int input_height, int input_width, int input_channels,
               int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
               int sensitivity_height, int sensitivity_width, int sensitivity_channels)
@@ -180,5 +254,62 @@ int max_pool_grad(float *input_tensor, float *sensitivity_map, float *result,
             }
         }
     }
+    return 0;
+}
+
+extern "C"
+int conv2d_right(float* input_tensor, float *output_tensor, float* filter,
+                 int batch_size, int input_height, int input_width, int input_channels,
+                 int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
+                 int filter_height, int filter_width, int output_channels)
+{
+    int b = 0; // batch number
+    int f = 0; // filter number/output_channel number
+    int c = 0; // input_channel number
+    int si_max = input_height - filter_height + 1;
+    int sj_max = input_width - filter_width + 1;
+    int si = 0; // the i_pos of the left_up block of filter in the input
+    int sj = 0; // the j_pos of the left_up block of filter in the input
+    int ci = 0; // the current calculate block i_pos in the filter
+    int cj = 0; // the current calculate block j_pos in the filter
+    for (b = 0; b < batch_size; b += stride_batch)
+        for (si = 0; si < si_max; si += stride_in_height)
+            for (sj = 0; sj < sj_max; sj += stride_in_width)
+                for (ci = 0; ci < filter_height; ci++)
+                    for (cj = 0; cj < filter_width; cj++)
+                        for (c = 0; c < input_channels; c += stride_in_channel)
+                            for (f = 0; f < output_channels; f++)
+                                *(output_tensor + find(b, si, sj, f, si_max, sj_max, output_channels)) +=
+                                        *(input_tensor + find(b, si + ci, sj + cj, c, input_height, input_width, input_channels))
+                                        * (*(filter + find(ci, cj, c, f, filter_width, input_channels, output_channels)));
+    return 0;
+}
+
+extern "C"
+int conv2d_gi_right(float* sensitivity_map, float* filter, float* result,
+                    int batch_size, int sensitivity_height, int sensitivity_width, int sensitivity_channels,
+                    int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
+                    int filter_height, int filter_width, int input_channels)
+{
+    int b = 0; // batch number
+    int f = 0; // filter number/sensitivity_channel number
+    int c = 0; // filter_input_channel/result_channel number
+    int si_max = sensitivity_height - filter_height + 1;
+    int sj_max = sensitivity_width - filter_width + 1;
+    int si = 0; // the i_pos of the left_up block of filter in the sensitivity_map
+    int sj = 0; // the j_pos of the left_up block of filter in the sensitivity_map
+    int ci = 0; // the current calculate block i_pos in the filter, need to reverse
+    int cj = 0; // the current calculate block j_pos in the filter, need to reverse
+    for (b = 0; b < batch_size; b += stride_batch)
+        for (si = 0; si < si_max; si += stride_in_height)
+            for (sj = 0; sj < sj_max; sj += stride_in_width)
+                for (ci = 0; ci < filter_height; ci++) //reverse
+                    for (cj = 0; cj < filter_width; cj++) //reverse
+                        for (c = 0; c < input_channels; c += stride_in_channel)
+                            for (f = 0; f < sensitivity_channels; f++)
+                                *(result + find(b, si, sj, c, si_max, sj_max, input_channels)) +=
+                                        *(sensitivity_map + find(b, si + ci, sj + cj, f, sensitivity_height, sensitivity_width, sensitivity_channels))
+                                        * ( *(filter + find(ci, cj, c, f, filter_width, input_channels, sensitivity_channels)));
+    
     return 0;
 }

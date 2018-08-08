@@ -39,6 +39,7 @@ def conv2d_boost(input_tensor, filter, strides, padding, width_padding_left = 0,
     else:
         assert False, "padding in conv2d_boost wrong"
 
+
     input_pointer = fecth_pointer(input_padded)
     output_pointer = fecth_pointer(output_tensor)
     filter_pointer = fecth_pointer(filter)
@@ -84,7 +85,6 @@ def conv2d_gi_boost(sensitivity_map, filter, strides, padding, width_padding_lef
                                   sensitivity_shape[2] - filter_shape[1] + 1, filter_shape[3]], dtype=np.float32)
     else:
         assert False, "padding in conv2d_boost_gi wrong"
-
     sensitivity_pointer = fecth_pointer(sensitivity_padded)
     filter_pointer = fecth_pointer(filter)
     result_pointer = fecth_pointer(result_tensor)

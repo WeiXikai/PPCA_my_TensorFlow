@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/boost_cc.dir/boost_cc.cpp.o  -o boost_cc 

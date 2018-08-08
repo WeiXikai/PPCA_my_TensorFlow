@@ -31,10 +31,7 @@ class Node(object):
     def eval(self, feed_dict=None):
         if feed_dict is None:
             feed_dict = {}
-        if self.value is not None:
-            return self.value
-        else:
-            return tf.default_session.run(self, feed_dict)
+        return tf.default_session.run(self, feed_dict)
 
     def run(self, feed_dict=None):
         if feed_dict is None:
@@ -814,7 +811,7 @@ class VariableOp(Operator):
         return new_node
 
     def compute(self, node):
-        assert False, "\033[1;31mVariable doesn't support compute\033[0m"
+        node.value = self.variable_map[node][0](self.variable_map[node][1])
 
     def gradient(self, node, this_grad):
         return None

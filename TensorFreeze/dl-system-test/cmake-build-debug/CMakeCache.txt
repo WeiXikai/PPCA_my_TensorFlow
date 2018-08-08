@@ -144,7 +144,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=dl_system_test
+CMAKE_PROJECT_NAME:STATIC=boost_cc
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -212,10 +212,16 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
 
 //Value Computed by CMake
-dl_system_test_BINARY_DIR:STATIC=/home/wymt/code/ppca_tftask/TensorFreeze/dl-system-test/cmake-build-debug
+boost_cc_BINARY_DIR:STATIC=/home/wymt/code/ppca_tftask/TensorFreeze/dl-system-test/cmake-build-debug
 
 //Value Computed by CMake
-dl_system_test_SOURCE_DIR:STATIC=/home/wymt/code/ppca_tftask/TensorFreeze/dl-system-test
+boost_cc_SOURCE_DIR:STATIC=/home/wymt/code/ppca_tftask/TensorFreeze/dl-system-test
+
+//Value Computed by CMake
+ojtest_BINARY_DIR:STATIC=/home/wymt/code/ppca_tftask/TensorFreeze/dl-system-test/cmake-build-debug
+
+//Value Computed by CMake
+ojtest_SOURCE_DIR:STATIC=/home/wymt/code/ppca_tftask/TensorFreeze/dl-system-test
 
 
 ########################

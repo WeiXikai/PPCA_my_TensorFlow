@@ -1,5 +1,6 @@
 import numpy as np
+import ctypes
 
-a = (1, 2, 3, 4)
+test_lib = ctypes.cdll.LoadLibrary("./libtest_mkl.so")
 
-print ((np.random.rand(*a) < 0.5) / 0.5)
+test_lib.test()

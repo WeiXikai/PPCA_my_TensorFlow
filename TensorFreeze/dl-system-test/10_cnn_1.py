@@ -4,7 +4,6 @@ import TensorFreeze as tf
 
 def weight_variable(shape):
     initial = tf.random_normal(shape, stddev=0.1)
-    # initial = tf.zeros(shape) + 0.25
     return tf.Variable(initial)
 
 def bias_variable(shape):
@@ -55,7 +54,6 @@ cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_
 
 train_step = tf.train.GradientDescentOptimizer(1e-2).minimize(cross_entropy)
 correct_prediction = tf.equal(tf.argmax(y_conv, 1), tf.argmax(y_, 1))
-
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 # Get the mnist dataset (use tensorflow here)
@@ -68,13 +66,13 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for i in range(200):
         batch = mnist.train.next_batch(100)
-        if i % 10 == 0:
-            train_accuracy = sess.run([accuracy, cross_entropy], feed_dict = { x: batch[0],
+        if i % 1 == 0:
+            train_accuracy = accuracy.eval(feed_dict = { x: batch[0],
                                            y_: batch[1]})
-
-            print('Step %d, trainning accuracy %s' % (i, str(train_accuracy)))
+            print('Step %d, trainning accuracy %g' % (i, train_accuracy))
 
         train_step.run(feed_dict={x: batch[0], y_: batch[1]})
+
     ans = accuracy.eval(feed_dict={ x:mnist.test.images,
                                     y_: mnist.test.labels})
     print('Test accuracy: %g' % ans)
