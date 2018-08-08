@@ -24,7 +24,7 @@ class nn:
             return new_node
 
         def compute(self, node):
-            node.value = (node.inputs[0].value + node.inputs[0].value * np.sign(node.inputs[0].value)) / 2
+            node.value = np.maximum(node.inputs[0].value, 0)
 
         def gradient(self, node, this_grad):
             return [relu_gradient(node.inputs[0], this_grad)]

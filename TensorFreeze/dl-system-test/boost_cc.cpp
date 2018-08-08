@@ -28,22 +28,43 @@ inline int mat_find(const int &i, const int &j, const int &j_size)
     return i * j_size + j;
 }
 
-inline void matmul(const int &m, const int &n, const int &k, const float &alpha, float *a,
-                 const int &lda, float *b, const int &ldb, const float &beta, float *c, const int &ldc)
+//inline void matmul(const int &m, const int &n, const int &k, const float &alpha, float *a,
+//                 const int &lda, float *b, const int &ldb, const float &beta, float *c, const int &ldc)
+//{
+//
+//    for (register int w = 0; w < k; w++)
+//    {
+//        for (register int i = 0; i < m; i++)
+//        {
+//            for (register int j = 0; j < n; j++)
+//            {
+//
+//                *(c + mat_find(i, j, n)) += *(a + mat_find(i, w, k)) * (*(b + mat_find(w, j, n))) * alpha
+//                                            + (*(c + mat_find(i, j, n))) * beta;
+//            }
+//        }
+//    }
+//}
+
+
+extern "C"
+int matmul(float *mat_left, float *mat_right, float *mat_result, bool trans_left, bool trans_right, int m, int k, int n)
 {
-    
-    for (register int w = 0; w < k; w++)
+    if (trans_left)
     {
-        for (register int i = 0; i < m; i++)
-        {
-            for (register int j = 0; j < n; j++)
-            {
-        
-                *(c + mat_find(i, j, n)) += *(a + mat_find(i, w, k)) * (*(b + mat_find(w, j, n))) * alpha
-                                            + (*(c + mat_find(i, j, n))) * beta;
-            }
-        }
+        if (trans_right)
+            cblas_sgemm(CblasRowMajor, CblasTrans, CblasTrans, m, n, k, 1, mat_left, m, mat_right, k, 0, mat_result, n);
+        else
+            cblas_sgemm(CblasRowMajor, CblasTrans, CblasNoTrans, m, n, k, 1, mat_left, m, mat_right, n, 0, mat_result, n);
     }
+    else
+    {
+        if (trans_right)
+            cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasTrans, m, n, k, 1, mat_left, k, mat_right, k, 0, mat_result, n);
+        else
+            cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, m, n, k, 1, mat_left, k, mat_right, n, 0, mat_result, n);
+    }
+    return 0;
 }
 
 extern "C"
@@ -52,6 +73,8 @@ int conv2d(float* input_tensor, float *output_tensor, float* filter,
            int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
            int filter_height, int filter_width, int output_channels)
 {
+    
+    mkl_set_num_threads(8);
     register int b = 0; // batch number
     int f = 0; // filter number/output_channel number
     int c = 0; // input_channel number
@@ -77,14 +100,11 @@ int conv2d(float* input_tensor, float *output_tensor, float* filter,
             }
         }
     }
-    puts("enter matmul in conv2d");
-    cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, CblasNoTrans, (MKL_INT)batch_size * si_max * sj_max,
-                (MKL_INT)out)
-    cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, CblasNoTrans, (MKL_INT)batch_size * si_max * sj_max
-            , (MKL_INT)output_channels, (MKL_INT)filter_height * filter_width * input_channels
-            , 1, input_flatten, (MKL_INT)filter_height * filter_width * input_channels,
-           filter, (MKL_INT)output_channels, 0, output_tensor, (MKL_INT)output_channels);
-    puts("exit matmul in conv2d\n");
+    // puts("enter matmul in conv2d");
+    cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, batch_size * si_max * sj_max, output_channels,
+            filter_height * filter_width * input_channels, 1, input_flatten,
+            filter_height * filter_width * input_channels, filter, output_channels, 0, output_tensor, output_channels);
+    // puts("exit matmul in conv2d\n");
     free(input_flatten);
     return 0;
 }
@@ -95,6 +115,8 @@ int conv2d_gi(float* sensitivity_map, float* filter, float* result,
                     int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
                     int filter_height, int filter_width, int input_channels)
 {
+    
+    mkl_set_num_threads(8);
     int b = 0; // batch number
     int f = 0; // filter number/sensitivity_channel number
     int c = 0; // filter_input_channel/result_channel number
@@ -106,14 +128,14 @@ int conv2d_gi(float* sensitivity_map, float* filter, float* result,
     int cj = 0; // the current calculate block j_pos in the filter, need to reverse
     float *sensitivity_flatten = (float*)malloc(batch_size * si_max * sj_max * filter_height * filter_width * sensitivity_channels * sizeof(float));
     float *filter_flatten = (float*)malloc(filter_height * filter_width * input_channels * sensitivity_channels * sizeof(float));
-    
+
     for (ci = 0; ci < filter_height; ci++)
         for (cj = 0; cj < filter_width; cj++)
             for (c = 0; c < input_channels; c++)
                 for (f = 0; f < sensitivity_channels; f++)
                     *(filter_flatten + find(ci, cj, f, c, filter_width, sensitivity_channels, input_channels))
                     = *(filter + find(filter_height - ci - 1, filter_width - cj - 1, c, f, filter_width, input_channels, sensitivity_channels));
-    
+
     for (b = 0; b < batch_size; b += stride_batch)
     {
         for (si = 0; si < si_max; si += stride_in_height)
@@ -129,10 +151,12 @@ int conv2d_gi(float* sensitivity_map, float* filter, float* result,
             }
         }
     }
-    puts("enter matmul in conv2d_gi");
-    matmul(batch_size * si_max * sj_max, input_channels, filter_height * filter_width * sensitivity_channels, 1, sensitivity_flatten, filter_height * filter_width * sensitivity_channels,
+    // puts("enter matmul in conv2d_gi");
+    cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+            batch_size * si_max * sj_max, input_channels, filter_height * filter_width * sensitivity_channels,
+            1, sensitivity_flatten, filter_height * filter_width * sensitivity_channels,
            filter_flatten, input_channels, 0, result, input_channels);
-    puts("exit matmul in conv2d_gi\n");
+    // puts("exit matmul in conv2d_gi\n");
     free(sensitivity_flatten);
     free(filter_flatten);
     return 0;
@@ -144,6 +168,8 @@ int conv2d_gw(float *input_tensor, float *sensitivity_map, float* result,
             int stride_batch, int stride_in_height, int stride_in_width, int stride_in_channel,
             int sensitivity_height, int sensitivity_width, int sensitivity_channels)
 {
+    
+    mkl_set_num_threads(8);
     int b = 0; // batch number
     int f = 0; // sensitivity_channel number
     int c = 0; // input_channel
@@ -175,10 +201,12 @@ int conv2d_gw(float *input_tensor, float *sensitivity_map, float* result,
             }
         }
     }
-    puts("enter conv2d_gw");
-    matmul(ci_max * cj_max * input_channels, sensitivity_channels, batch_size * sensitivity_height * sensitivity_width, 1,
-            input_flatten, batch_size * sensitivity_height * sensitivity_width, sensitivity_map, sensitivity_channels, 0, result, input_channels);
-    puts("exit conv2d_gw");
+//    puts("enter conv2d_gw");
+    cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+            ci_max * cj_max * input_channels, sensitivity_channels, batch_size * sensitivity_height * sensitivity_width
+            , 1, input_flatten, batch_size * sensitivity_height * sensitivity_width, sensitivity_map,
+            sensitivity_channels, 0, result, sensitivity_channels);
+//    puts("exit conv2d_gw");
     free(input_flatten);
     return 0;
 }
@@ -208,7 +236,7 @@ int conv2d_gw_right(float *input_tensor, float *sensitivity_map, float* result,
                                 *(result + find(ci, cj, c, f, cj_max, input_channels, sensitivity_channels)) +=
                                         *(input_tensor + find(b, ci + si, cj + sj, c, input_height, input_width, input_channels))
                                         * (*(sensitivity_map + find(b, si, sj, f, sensitivity_height, sensitivity_width, sensitivity_channels)));
-                
+
     return 0;
 }
 
@@ -350,6 +378,6 @@ int conv2d_gi_right(float* sensitivity_map, float* filter, float* result,
                                 *(result + find(b, si, sj, c, si_max, sj_max, input_channels)) +=
                                         *(sensitivity_map + find(b, si + ci, sj + cj, f, sensitivity_height, sensitivity_width, sensitivity_channels))
                                         * ( *(filter + find(ci, cj, c, f, filter_width, input_channels, sensitivity_channels)));
-    
+
     return 0;
 }

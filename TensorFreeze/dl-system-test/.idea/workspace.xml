@@ -14,13 +14,17 @@
     <list default="true" id="c0a04628-da20-4e54-b4c2-28ae9fb6ae4f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/10_cnn_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/10_cnn_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/11_cnn_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/11_cnn_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/9_cnn_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/9_cnn_0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Neural_Network.py" beforeDir="false" afterPath="$PROJECT_DIR$/Neural_Network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Node.py" beforeDir="false" afterPath="$PROJECT_DIR$/Node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorFreeze.py" beforeDir="false" afterPath="$PROJECT_DIR$/TensorFreeze.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/boost_cc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/boost_cc.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/boost_cc.so" beforeDir="false" afterPath="$PROJECT_DIR$/boost_cc.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/boost_cc.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/boost_cc.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/boost_cc.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/boost_cc.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/boost_cc.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/boost_cc.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c_boost.py" beforeDir="false" afterPath="$PROJECT_DIR$/c_boost.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/10_cnn_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcase/10_cnn_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/11_cnn_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcase/11_cnn_2.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,32 +52,33 @@
     <session id="-51440041">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="4" />
+          <entry key="project.open.time.6" value="6" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="11459" />
-          <entry key="py" value="33" />
+          <entry key="cpp" value="12064" />
+          <entry key="py" value="90" />
           <entry key="txt" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="58" />
-          <entry key="ObjectiveC" value="11459" />
-          <entry key="Python" value="33" />
+          <entry key="ObjectiveC" value="12064" />
+          <entry key="Python" value="90" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="cpp" value="6" />
-          <entry key="py" value="5" />
+          <entry key="py" value="8" />
           <entry key="txt" value="3" />
         </counts>
       </usages-collector>
@@ -81,7 +86,7 @@
         <counts>
           <entry key="CMakeLists.txt" value="3" />
           <entry key="ObjectiveC" value="6" />
-          <entry key="Python" value="5" />
+          <entry key="Python" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -89,14 +94,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boost_cc.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="80" column="20" lean-forward="true" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
+            <state relative-caret-position="1736">
+              <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcase/10_cnn_1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2072">
+              <caret line="74" selection-start-line="74" selection-end-line="75" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testcase/11_cnn_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="820">
+              <caret line="80" column="49" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -132,6 +155,8 @@
         <option value="$PROJECT_DIR$/myboost.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/boost_cc.cpp" />
+        <option value="$PROJECT_DIR$/testcase/10_cnn_1.py" />
+        <option value="$PROJECT_DIR$/testcase/11_cnn_2.py" />
       </list>
     </option>
   </component>
@@ -153,6 +178,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -160,11 +186,15 @@
               <item name="boost_cc" type="b2602c69:ProjectViewProjectNode" />
               <item name="dl-system-test" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="boost_cc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dl-system-test" type="462c0819:PsiDirectoryNode" />
+              <item name="testcase" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -219,18 +249,20 @@
       <workItem from="1533637975255" duration="1009000" />
       <workItem from="1533644572879" duration="4967000" />
       <workItem from="1533689328057" duration="22746000" />
-      <workItem from="1533724272112" duration="5045000" />
+      <workItem from="1533724272112" duration="6566000" />
+      <workItem from="1533732350094" duration="78000" />
+      <workItem from="1533733246802" duration="4198000" />
+      <workItem from="1533740115277" duration="4000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69604000" />
+    <option name="totallyTimeSpent" value="75405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="26" width="1849" height="1054" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14032169" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14531337" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -263,9 +295,6 @@
     <entry file="file://$PROJECT_DIR$/boost.cpp" />
     <entry file="file://$PROJECT_DIR$/main.cpp" />
     <entry file="file://$PROJECT_DIR$/myboost.cpp" />
-    <entry file="file://$PROJECT_DIR$/testcase/10_cnn_1.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/10_cnn_1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
@@ -273,10 +302,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boostcc _bak.cpp">
+    <entry file="file://$PROJECT_DIR$/c_boost.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boost_cc.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        <state relative-caret-position="1736">
+          <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/10_cnn_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2072">
+          <caret line="74" selection-start-line="74" selection-end-line="75" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -287,13 +329,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boost_cc.cpp">
+    <entry file="file://$PROJECT_DIR$/boostcc _bak.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="80" column="20" lean-forward="true" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="392">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcase/11_cnn_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="820">
+          <caret line="80" column="49" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
         </state>
       </provider>
     </entry>
