@@ -1,11 +1,21 @@
 #include <cstdio>
 #include <stdlib.h>
 #include <cstring>
+#include "mkl.h"
 
-// *(a + f(i, j, k, h, i_size, j_size, k_size)) is for the a[i][j][k][h])
 inline int find(const int &i, const int &j, const int &k, const int &w, const int &j_size, const int &k_size, const int &w_size)
 {
-    return i * j_size * k_size * w_size + j * k_size * w_size + k * w_size + w;
+    return ((i * j_size + j) * k_size + k) * w_size + w;
+}
+
+inline int find(const int &i, const int &j, const int &k, const int &w, const int &t, const int &j_size, const int &k_size, const int &w_size, const int &t_size)
+{
+    return (((i * j_size + j) * k_size + k) * w_size + w) * t_size + t;
+}
+
+inline int find(const int &i, const int &j, const int &k, const int &w, const int &t, const int &p, const int &j_size, const int &k_size, const int &w_size, const int &t_size, const int &p_size)
+{
+    return ((((i * j_size + j) * k_size + k) * w_size + w) * t_size + t) * p_size + p;
 }
 
 inline float max(const float &a, const float &b)
@@ -60,7 +70,7 @@ int conv2d(float* input_tensor, float *output_tensor, float* filter,
             {
                 for (ci = 0; ci < filter_height; ci++)
                 {
-                    memcpy(input_flatten + b * filter_height * filter_width * input_channels * si_max * sj_max + find(si, sj, ci, 0, sj_max, filter_height, filter_width * input_channels),
+                    memcpy(input_flatten + find(b, si, sj, ci, 0, si_max, sj_max, filter_height, filter_width * input_channels),
                            input_tensor + find(b, si + ci, sj, 0, input_height, input_width, input_channels),
                             filter_width * input_channels * sizeof(float));
                 }
@@ -68,8 +78,12 @@ int conv2d(float* input_tensor, float *output_tensor, float* filter,
         }
     }
     puts("enter matmul in conv2d");
-    matmul(batch_size * si_max * sj_max, output_channels, filter_height * filter_width * input_channels, 1, input_flatten, filter_height * filter_width * input_channels,
-           filter, output_channels, 0, output_tensor, output_channels);
+    cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, CblasNoTrans, (MKL_INT)batch_size * si_max * sj_max,
+                (MKL_INT)out)
+    cblas_sgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, CblasNoTrans, (MKL_INT)batch_size * si_max * sj_max
+            , (MKL_INT)output_channels, (MKL_INT)filter_height * filter_width * input_channels
+            , 1, input_flatten, (MKL_INT)filter_height * filter_width * input_channels,
+           filter, (MKL_INT)output_channels, 0, output_tensor, (MKL_INT)output_channels);
     puts("exit matmul in conv2d\n");
     free(input_flatten);
     return 0;
@@ -108,7 +122,7 @@ int conv2d_gi(float* sensitivity_map, float* filter, float* result,
             {
                 for (ci = 0; ci < filter_height; ci++)
                 {
-                    memcpy(sensitivity_flatten + b * filter_height * filter_width * sensitivity_channels * si_max * sj_max + find(si, sj, ci, 0, sj_max, filter_height, filter_width * sensitivity_channels),
+                    memcpy(sensitivity_flatten + find(b, si, sj, ci, 0, si_max, sj_max, filter_height, filter_width * sensitivity_channels),
                            sensitivity_map + find(b, si + ci, sj, 0, sensitivity_height, sensitivity_width, sensitivity_channels),
                            filter_width * sensitivity_channels * sizeof(float));
                 }
@@ -133,13 +147,39 @@ int conv2d_gw(float *input_tensor, float *sensitivity_map, float* result,
     int b = 0; // batch number
     int f = 0; // sensitivity_channel number
     int c = 0; // input_channel
-    int ci_max = input_height - sensitivity_height + 1;
-    int cj_max = input_width - sensitivity_width + 1;
+    int ci_max = input_height - sensitivity_height + 1; // filter height
+    int cj_max = input_width - sensitivity_width + 1; // filter width
     int ci = 0; // the i_pos of the left_up block of sensitivity_map in the input_padding
     int cj = 0; // the j_pos of the left_up block of sensitivity_map in the input_padding
     int si = 0; // the current calculate block i_pos in the sensitivity_map
     int sj = 0; // the current calculate block j_pos in the sensitivity_map
-    
+    float *input_flatten = (float*)malloc(ci_max * cj_max * input_channels * batch_size * sensitivity_height * sensitivity_width * sizeof(float));
+    for (b = 0; b < batch_size; b += stride_batch)
+    {
+        for (ci = 0; ci < ci_max; ci++)
+        {
+            for (cj = 0; cj < cj_max; cj++)
+            {
+                for (si = 0; si < sensitivity_height; si += stride_in_height)
+                {
+                    for (sj = 0; sj < sensitivity_width; sj += stride_in_width)
+                    {
+                        for (c = 0; c < input_channels; c++)
+                        {
+                            *(input_flatten +
+                               find(ci, cj, c, b, si, sj, cj_max, input_channels, batch_size, sensitivity_height, sensitivity_width))
+                               = *(input_tensor + find(b, si + ci, sj + cj, c, input_height, input_width, input_channels));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    puts("enter conv2d_gw");
+    matmul(ci_max * cj_max * input_channels, sensitivity_channels, batch_size * sensitivity_height * sensitivity_width, 1,
+            input_flatten, batch_size * sensitivity_height * sensitivity_width, sensitivity_map, sensitivity_channels, 0, result, input_channels);
+    puts("exit conv2d_gw");
+    free(input_flatten);
     return 0;
 }
 

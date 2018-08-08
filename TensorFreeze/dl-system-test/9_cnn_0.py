@@ -26,7 +26,7 @@ def test_backward_conv(tf):
 
         loss = tf.reduce_sum(conv1)
         train_op = tf.train.GradientDescentOptimizer(1).minimize(loss)
-        grad = tf.gradients(conv1, [x])[0]
+        grad = tf.gradients(conv1, [w])[0]
         sess.run(tf.global_variables_initializer())
         ans = sess.run(grad, feed_dict={
             x: np.arange(3*4*4*2).reshape(3, 4, 4, 2),
@@ -64,7 +64,7 @@ def test_backward_maxpool(tf):
 
 if __name__ == "__main__":
     testcases = [
-            test_forward_conv,
+            # test_forward_conv,
             test_backward_conv,
             # test_forward_maxpool,
             # test_backward_maxpool

@@ -3,37 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d7c477bb-70ba-46b0-aed4-890adbea137f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dl-system-test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/10_cnn_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/10_cnn_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/10_cnn_1.py.lprof" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/11_cnn_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/11_cnn_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/9_cnn_0.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/9_cnn_0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dl-system-test/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/Node.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/Node.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dl-system-test/boost_cc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/boost_cc.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dl-system-test/boost_cc.so" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/boost_cc.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/c_boost.py" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/c_boost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/CXX.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/boost.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/dl_system_test.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/dl_system_test" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/dl_system_test.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/boost_cc.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/dl-system-test/cmake-build-debug/CMakeFiles/boost_cc.dir/flags.make" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,13 +20,13 @@
     <SUITE FILE_PATH="coverage/TensorFreeze$1_adder.coverage" NAME="1_adder Coverage Results" MODIFIED="1533135198703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$Optimizer.coverage" NAME="Optimizer Coverage Results" MODIFIED="1533214178194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$11_cnn_2.coverage" NAME="11_cnn_2 Coverage Results" MODIFIED="1533640269731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
-    <SUITE FILE_PATH="coverage/TensorFreeze$9_cnn_0.coverage" NAME="9_cnn_0 Coverage Results" MODIFIED="1533718849707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$9_cnn_0.coverage" NAME="9_cnn_0 Coverage Results" MODIFIED="1533728584616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$a.coverage" NAME="a Coverage Results" MODIFIED="1532847954256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$2_init__1_.coverage" NAME="2_init (1) Coverage Results" MODIFIED="1532880078446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test/testcase" />
     <SUITE FILE_PATH="coverage/TensorFreeze$assistance.coverage" NAME="assistance Coverage Results" MODIFIED="1533135313928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$5_mnist_grad.coverage" NAME="5_mnist_grad Coverage Results" MODIFIED="1533556816046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$3_assign.coverage" NAME="3_assign Coverage Results" MODIFIED="1533438301183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test/testcase" />
-    <SUITE FILE_PATH="coverage/TensorFreeze$10_cnn_1.coverage" NAME="10_cnn_1 Coverage Results" MODIFIED="1533718858518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
+    <SUITE FILE_PATH="coverage/TensorFreeze$10_cnn_1.coverage" NAME="10_cnn_1 Coverage Results" MODIFIED="1533728600804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$7_ml_perceptron.coverage" NAME="7_ml_perceptron Coverage Results" MODIFIED="1533641365011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
     <SUITE FILE_PATH="coverage/TensorFreeze$run.coverage" NAME="run Coverage Results" MODIFIED="1532932876320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../onlinejudge/1014 /release" />
     <SUITE FILE_PATH="coverage/TensorFreeze$c_boost.coverage" NAME="c_boost Coverage Results" MODIFIED="1533717220223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dl-system-test" />
@@ -70,26 +45,26 @@
     <session id="-183300041">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="29" />
+          <entry key="project.closed" value="30" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="24" />
+          <entry key="project.open.time.6" value="25" />
           <entry key="project.open.time.7" value="5" />
           <entry key="project.open.time.8" value="6" />
-          <entry key="project.opened" value="39" />
+          <entry key="project.opened" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="cpp" value="20" />
-          <entry key="py" value="82660" />
+          <entry key="py" value="82669" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="C++" value="20" />
-          <entry key="Python" value="82660" />
+          <entry key="Python" value="82669" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -127,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/9_cnn_0.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="76" column="28" lean-forward="true" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="28" />
+            <state relative-caret-position="-896">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#31#60#0" expanded="true" />
               </folding>
@@ -140,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/5_mnist_grad.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -148,7 +123,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/TensorFreeze.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-84">
+            <state relative-caret-position="1540">
               <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -164,7 +139,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/Neural_Network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
+            <state relative-caret-position="1512">
               <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -178,8 +153,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dl-system-test/c_boost.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="86" column="56" selection-start-line="86" selection-start-column="56" selection-end-line="86" selection-end-column="56" />
+            <state relative-caret-position="-3388">
+              <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -187,8 +162,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dl-system-test/10_cnn_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+            <state relative-caret-position="-280">
+              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -283,7 +258,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="277" />
     <option name="y" value="227" />
     <option name="width" value="1377" />
@@ -535,7 +510,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="26" width="1849" height="1054" extended-state="6" />
+    <frame x="71" y="26" width="1849" height="1054" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24847138" />
@@ -828,25 +803,13 @@
     <entry file="file://$PROJECT_DIR$/dl-system-test/testcase/5_mnist_grad.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dl-system-test/Neural_Network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1533576175780" expanded="true" signature="552:1977" ph="..." />
-            <marker date="1533576175780" expanded="true" signature="1098:1977" ph="..." />
-          </folding>
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dl-system-test/TensorFreeze.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
+        <state relative-caret-position="1540">
           <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -858,10 +821,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dl-system-test/Neural_Network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1512">
+          <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1533576175780" expanded="true" signature="552:1977" ph="..." />
+            <marker date="1533576175780" expanded="true" signature="1098:1977" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dl-system-test/9_cnn_0.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="76" column="28" lean-forward="true" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="28" />
+        <state relative-caret-position="-896">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="e#31#60#0" expanded="true" />
           </folding>
@@ -870,15 +845,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dl-system-test/10_cnn_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="-280">
+          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dl-system-test/c_boost.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="86" column="56" selection-start-line="86" selection-start-column="56" selection-end-line="86" selection-end-column="56" />
+        <state relative-caret-position="-3388">
+          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
         </state>
       </provider>
     </entry>
